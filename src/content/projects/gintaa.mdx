@@ -1,0 +1,109 @@
+---
+title: "GINTAA Delivery Application"
+tagline: "Designing for the people behind every delivery"
+slug: "gintaa"
+number: "02"
+type: ["Food Delivery", "Mobile", "Admin Portal"]
+industry: "Food Delivery"
+blurb: "A mobile app that walks delivery partners through their entire day — from onboarding to earnings."
+theme: "gintaa"
+order: 2
+category: "Frontpage · Orders · Delivery"
+stats:
+  - label: "Role"
+    value: "UI UX Designer"
+  - label: "Client"
+    value: "GINTAA"
+  - label: "Platform"
+    value: "iOS + Android"
+  - label: "Type"
+    value: "Full Design"
+---
+
+## Overview
+
+A mobile app that walks GINTAA's delivery partners through their entire day — getting set up on the platform, taking on orders, completing deliveries, and seeing what they've earned. I designed almost every part of the experience, shaped by close collaboration with the GINTAA team and the way their operations actually work on the ground.
+
+Available on iOS & Android.
+
+---
+
+## Context & Problem
+
+GINTAA is a food delivery platform operating in India. As the platform scaled, they needed a dedicated delivery partner app that could:
+
+1. **Onboard new partners quickly** — reducing the time from signup to first delivery
+2. **Support in-field operations** — real-time order routing, navigation handoff, and status updates
+3. **Surface earnings clearly** — daily, weekly, and incentive earnings with enough detail for partners to trust the numbers
+4. **Work reliably in variable connectivity** — delivery routes pass through areas with inconsistent data coverage
+
+The existing flow was partially managed through WhatsApp groups and a generic form tool — workable at small scale, but not fit for a growing partner base.
+
+---
+
+## Discovery and Collaboration
+
+The engagement ran as a close collaboration with the GINTAA operations and product teams. Because delivery partner behaviour is hyperlocal, design decisions needed to reflect how GINTAA's network actually worked — not a generic food-delivery mental model.
+
+**Research inputs:**
+- Operational brief from GINTAA team covering the end-to-end partner journey
+- Review of competitor delivery partner apps (Swiggy, Zomato, Dunzo) for interaction patterns
+- Understanding of GINTAA's order management and routing backend
+
+---
+
+## What I Designed
+
+**Platform scope:**
+- **Partner mobile app** (iOS + Android): onboarding, availability toggle, order accept/reject, navigation, delivery confirmation, earnings dashboard
+- **Admin portal** (web): partner management, order assignment oversight, earnings reconciliation, support queue
+
+**Onboarding:** Built as a document verification + training flow that partners could complete asynchronously on their own device. Progress is saved so incomplete onboarding can be resumed.
+
+**Order flow:** Designed around the physical reality of delivery — the app knows when the partner is at the restaurant, when they've picked up, and when they're near the drop-off. Status transitions are triggered by location with manual override.
+
+**Earnings:** The earnings screen breaks down each component — base delivery fee, distance bonus, surge pay, incentive completions — so partners understand how their total is built.
+
+---
+
+## User Persona
+
+The primary user is a delivery partner — often operating on a two-wheeler, managing the app while navigating unfamiliar streets, frequently in low-connectivity zones. Every interaction was stress-tested against: one-handed use, glance-ability, and what happens when the network drops mid-order.
+
+---
+
+## High Fidelity Designs
+
+The high-fidelity designs were executed across the full partner journey:
+
+- Onboarding & document verification screens
+- Home screen with availability toggle and order feed
+- Order accept/reject with 10-second window
+- In-delivery navigation handoff (Google Maps integration)
+- Delivery confirmation with photo capture
+- Earnings dashboard with daily / weekly / incentive breakdown
+- Admin portal with partner fleet overview
+
+---
+
+## Side Notes
+
+The admin portal was an interesting parallel track: it serves a completely different user (the operations manager sitting at a desk), but the underlying data model is the same. Designing the two in parallel meant decisions made in the partner app had immediate implications for what the admin needed to see.
+
+---
+
+## Working with Engineering
+
+Offline resilience was a joint decision between design and engineering. Core order status updates queue locally and sync when connectivity is restored. Partners see a clear offline indicator so they know the app is recording even when not transmitting.
+
+---
+
+## Outcome
+
+The app shipped on both iOS and Android. The admin portal went live alongside.
+
+- Onboarding completion rate improved compared to the previous multi-channel process
+- Order acceptance UI tested positively with pilot group of delivery partners
+- Earnings transparency reduced incoming support queries related to payment questions
+
+This was one of the most operationally grounded design projects I've worked on. Food delivery logistics have tight time constraints and zero tolerance for ambiguous UI — a delivery partner can't spend three seconds figuring out a button while on a motorcycle.

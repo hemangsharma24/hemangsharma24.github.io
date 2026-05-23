@@ -1,0 +1,67 @@
+@import "@fontsource-variable/bricolage-grotesque";
+@import "@fontsource/dm-sans";
+@import "@fontsource/dm-mono";
+@import "tailwindcss";
+
+@theme {
+  /* Fonts */
+  --font-display: "Bricolage Grotesque Variable", "Bricolage Grotesque", sans-serif;
+  --font-body:    "DM Sans", sans-serif;
+  --font-mono:    "DM Mono", monospace;
+
+  /* Base palette */
+  --color-ink:    #1E0D0D;
+  --color-cream:  #F4EDD9;
+  --color-muted:  #7A6363;
+
+  /* Project card backgrounds */
+  --color-gintaa: #D4BF96;
+  --color-fnol:   #4A2880;
+  --color-bosch:  #E8967A;
+  --color-bolna:  #192B1A;
+
+  /* UI surfaces */
+  --color-border-dark:  rgba(255 255 255 / 0.08);
+  --color-border-light: rgba(30 13 13 / 0.12);
+  --color-surface:      rgba(255 255 255 / 0.04);
+
+  /* Type scale */
+  --text-label:   0.9375rem;
+  --text-body:    1.0625rem;
+  --text-body-lg: 1.3125rem;
+  --text-h3:      1.75rem;
+  --text-h2:      3rem;
+  --text-h1:      4.5rem;
+
+  /* Leading & tracking */
+  --leading-tight: 1.1;
+  --leading-body:  1.6;
+  --tracking-wide:  0.08em;
+  --tracking-tight: -0.02em;
+
+  /* Layout */
+  --max-w-page:  90rem;
+  --px-page:     2.5rem;
+  --px-content:  4rem;
+  --card-h:      25rem;
+  --section-gap: 6rem;
+}
+
+@layer base {
+  html {
+    font-family: var(--font-body);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  body {
+    background-color: var(--color-ink);
+    color: var(--color-cream);
+    line-height: var(--leading-body);
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-display);
+    line-height: var(--leading-tight);
+    letter-spacing: var(--tracking-tight);
+  }
+}

@@ -1,0 +1,33 @@
+---
+interface Testimonial {
+  quote: string;
+  attribution: string;
+}
+
+interface Props {
+  testimonials: Testimonial[];
+}
+
+const { testimonials } = Astro.props;
+---
+
+<div
+  style={`display: grid; grid-template-columns: repeat(auto-fill, minmax(28rem, 1fr)); gap: 1.5rem;`}
+>
+  {testimonials.map(({ quote, attribution }) => (
+    <blockquote
+      style={`background: var(--color-surface); border: 1px solid var(--color-border-dark); border-radius: 0.75rem; padding: 2rem; margin: 0;`}
+    >
+      <p
+        style={`font-family: var(--font-body); font-size: var(--text-body); line-height: var(--leading-body); color: var(--color-cream); margin: 0 0 1.5rem; opacity: 0.9;`}
+      >
+        "{quote}"
+      </p>
+      <footer
+        style={`font-family: var(--font-mono); font-size: var(--text-label); color: var(--color-muted); letter-spacing: var(--tracking-wide);`}
+      >
+        — {attribution}
+      </footer>
+    </blockquote>
+  ))}
+</div>

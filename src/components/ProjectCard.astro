@@ -1,0 +1,79 @@
+---
+interface Props {
+  number: string;
+  title: string;
+  tags: string[];
+  blurb: string;
+  href: string;
+  theme: "gintaa" | "fnol" | "bosch" | "bolna";
+}
+
+const { number, title, tags, blurb, href, theme } = Astro.props;
+
+const bgMap: Record<string, string> = {
+  gintaa: "var(--color-gintaa)",
+  fnol:   "var(--color-fnol)",
+  bosch:  "var(--color-bosch)",
+  bolna:  "var(--color-bolna)",
+};
+
+const textMap: Record<string, string> = {
+  gintaa: "var(--color-ink)",
+  fnol:   "var(--color-cream)",
+  bosch:  "var(--color-ink)",
+  bolna:  "var(--color-cream)",
+};
+
+const bg = bgMap[theme];
+const fg = textMap[theme];
+---
+
+<a
+  href={href}
+  data-theme={theme}
+  style={`
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background: ${bg};
+    color: ${fg};
+    height: var(--card-h);
+    padding: 2rem;
+    border-radius: 0.75rem;
+    text-decoration: none;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+    overflow: hidden;
+  `}
+  onmouseover="this.style.transform='translateY(-4px)';this.style.boxShadow='0 12px 40px rgba(0,0,0,0.3)'"
+  onmouseout="this.style.transform='translateY(0)';this.style.boxShadow='none'"
+>
+  <div>
+    <span
+      style={`font-family: var(--font-mono); font-size: var(--text-label); opacity: 0.6; letter-spacing: var(--tracking-wide);`}
+    >
+      {number}
+    </span>
+    <h3
+      style={`font-family: var(--font-display); font-size: var(--text-h3); letter-spacing: var(--tracking-tight); margin: 0.5rem 0 0; text-transform: uppercase;`}
+    >
+      {title}
+    </h3>
+  </div>
+
+  <div>
+    <p
+      style={`font-family: var(--font-body); font-size: var(--text-body); line-height: var(--leading-body); opacity: 0.85; margin: 0 0 1.25rem; max-width: 36ch;`}
+    >
+      {blurb}
+    </p>
+    <div style="display: flex; flex-wrap: wrap; gap: 0.5rem;">
+      {tags.map((tag) => (
+        <span
+          style={`font-family: var(--font-mono); font-size: var(--text-label); padding: 0.25rem 0.625rem; border-radius: 2rem; border: 1px solid ${fg === "var(--color-ink)" ? "rgba(30,13,13,0.25)" : "rgba(255,255,255,0.2)"}; opacity: 0.8;`}
+        >
+          {tag}
+        </span>
+      ))}
+    </div>
+  </div>
+</a>

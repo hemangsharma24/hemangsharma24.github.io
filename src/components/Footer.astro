@@ -1,0 +1,33 @@
+---
+import LogoMark from "./LogoMark.tsx";
+---
+
+<footer style={`border-top: 1px solid var(--color-border-dark); margin-top: var(--section-gap);`}>
+  <div
+    style={`max-width: var(--max-w-page); margin: 0 auto; padding: var(--px-content) var(--px-page); display: grid; grid-template-columns: 1fr auto; gap: 3rem; align-items: end;`}
+  >
+    <div>
+      <p style={`font-family: var(--font-display); font-size: var(--text-h3); letter-spacing: var(--tracking-tight); margin: 0 0 1rem;`}>
+        Let's build something worth using.
+      </p>
+      <a
+        href="mailto:kshamahemang@gmail.com"
+        style={`font-family: var(--font-body); font-size: var(--text-body); color: var(--color-muted); text-decoration: none;`}
+      >
+        kshamahemang@gmail.com
+      </a>
+
+      <div style="margin-top: 2.5rem; display: flex; align-items: center; gap: 1.5rem;">
+        <a href="https://www.linkedin.com/in/hemang-sharma" target="_blank" rel="noopener noreferrer" style={`font-family: var(--font-mono); font-size: var(--text-label); color: var(--color-muted); text-decoration: none;`}>LinkedIn</a>
+        <a href="https://dribbble.com" target="_blank" rel="noopener noreferrer" style={`font-family: var(--font-mono); font-size: var(--text-label); color: var(--color-muted); text-decoration: none;`}>Dribbble</a>
+        <a href="https://read.cv/hemang" target="_blank" rel="noopener noreferrer" style={`font-family: var(--font-mono); font-size: var(--text-label); color: var(--color-muted); text-decoration: none;`}>Read.cv</a>
+      </div>
+
+      <p style={`font-family: var(--font-mono); font-size: var(--text-label); color: var(--color-muted); margin-top: 2rem; opacity: 0.6;`}>
+        © May 2026, Hemang Sharma
+      </p>
+    </div>
+
+    <LogoMark client:visible />
+  </div>
+</footer>

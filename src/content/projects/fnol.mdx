@@ -1,0 +1,70 @@
+---
+title: "FNOL — Insurance First Notice of Loss"
+tagline: "Designing an AI-first FNOL workspace, entirely inside Claude."
+slug: "fnol"
+number: "01"
+type: ["Insurance", "AI Product", "Brainstorming & Research"]
+industry: "Insurance"
+blurb: "Turning a long, rigid FNOL form into a guided, AI-assisted conversation that adapts as the story unfolds."
+theme: "fnol"
+order: 1
+category: "Claims Insurance"
+stats:
+  - label: "Role"
+    value: "Founding UI UX Designer"
+  - label: "Type"
+    value: "Solo Designer"
+  - label: "Method"
+    value: "Claude + Figma"
+  - label: "Year"
+    value: "2025"
+---
+
+## Overview
+
+Claims rarely arrive neatly. Yet most insurance systems still ask agents to fill them in like they do. This project rethought that first step — turning a long, rigid FNOL form into a guided, AI-assisted conversation that adapts as the story unfolds.
+
+The context was OverseeAI, an AI SaaS for Insurance technology serving clients in the US. My role spanned first wireframes through to the shipped product, working alongside ML engineers and insurance domain experts.
+
+---
+
+## Why I Designed This in Claude
+
+Traditional design handoffs often lose the nuance. I took a different path: the entire design process lived inside Claude — from research synthesis to wireframe descriptions to final annotations. This meant:
+
+- **Context stayed intact** — the problem statement, constraints, and edge cases travelled with the design
+- **Faster iteration** — critiquing a described layout is faster than redlining a static screen
+- **Prototype-adjacent** — stakeholders could read through the interaction flow like a story
+- **The problem statement drove everything** — no pixel pushing until the logic was right
+
+---
+
+## The Approach
+
+The core design shift was from *form-first* to *conversation-first*. Rather than presenting the entire FNOL data model upfront, the interface surfaces only the questions relevant to the emerging claim story — adapting in real-time as the agent logs details.
+
+- Progressive disclosure: questions appear as prior answers confirm their relevance
+- AI pre-fills: fields the ML model can extract from the call transcript are auto-populated and flagged for agent review
+- Confidence indicators: AI-filled fields show a confidence level so agents know where to double-check
+- Minimal visual chrome: the interface recedes — the call is the primary task, the UI is support
+- Linear narrative flow: even when the claimant jumps around, the UI maintains a coherent claim story view
+
+---
+
+## Prototype
+
+Three rounds of wireframes tested with the internal team and a domain expert. The biggest cut: an initial "claim type selector" that forced classification upfront — research showed agents rarely know the correct claim type until several exchanges in.
+
+The shipped interface reduced visible field count from 47 to under 15 at any given moment. AI pre-fill covered ~40% of fields on well-captured audio transcripts.
+
+---
+
+## Working with Stakeholders
+
+Domain expertise cannot be designed around. Early wireframes that skipped insurer input looked clean but got rejected in review because they missed regulatory nuances around field ordering and mandatory disclosures. Getting adjusters involved in week two rather than week four was the right call.
+
+---
+
+## Reflection
+
+Working at the intersection of AI output and human judgment was the formative challenge of this project. The instinct is to let the AI do as much as possible — but in insurance, accuracy carries legal weight. Every AI-filled field needed to feel like a *suggestion with receipts*, not an assertion.

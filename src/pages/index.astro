@@ -1,0 +1,201 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import FeaturedCard from "@/components/FeaturedCard.astro";
+import ExperienceRow from "@/components/ExperienceRow.astro";
+import TestimonialGrid from "@/components/TestimonialGrid.astro";
+import { getCollection } from "astro:content";
+import { experience } from "@/data/experience";
+import { testimonials } from "@/data/testimonials";
+
+const projects = (await getCollection("projects")).sort((a, b) => a.data.order - b.data.order);
+
+const companies = [
+  { name: "BOSCH", style: "font-weight: 800; letter-spacing: 0.05em;" },
+  { name: "Gintaa", style: "font-style: italic; font-family: var(--font-display);" },
+  { name: "norcos", style: "font-weight: 300; letter-spacing: 0.12em;" },
+  { name: "[bracket]", style: "font-family: var(--font-mono); font-size: 0.85em;" },
+  { name: "Overseas.AI", style: "font-weight: 600;" },
+];
+---
+
+<Layout title="Home" description="Hemang Sharma — UI/UX Product Designer. UX psychology + decision design. Based in Jaipur, India.">
+
+  <!-- Hero -->
+  <section style={`max-width: var(--max-w-page); margin: 0 auto; padding: var(--section-gap) var(--px-page) 4rem;`}>
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start;">
+
+      <!-- Left: text -->
+      <div>
+        <p style={`font-family: var(--font-mono); font-size: var(--text-label); color: var(--color-muted); letter-spacing: var(--tracking-wide); text-transform: uppercase; margin: 0 0 2rem;`}>
+          UI UX Designer · Jaipur, India
+        </p>
+        <h1 style={`font-family: var(--font-display); font-size: clamp(2rem, 3.5vw, var(--text-h1)); letter-spacing: var(--tracking-tight); line-height: var(--leading-tight); margin: 0 0 2rem;`}>
+          Hello, I'm Hemang Sharma — UI UX Designer based in Jaipur. Most recently Founding Designer at OverseeAI.
+        </h1>
+        <p style={`font-family: var(--font-body); font-size: var(--text-body); line-height: var(--leading-body); color: var(--color-muted); margin: 0 0 2.5rem; max-width: 48ch;`}>
+          An AI SaaS for Insurance technology, used by clients in the US. My role revolved around shipping the product end-to-end, from first wireframes to launch.
+        </p>
+        <div style="display: flex; gap: 1rem; flex-wrap: wrap; margin-bottom: 2.5rem;">
+          <a
+            href="/projects"
+            style={`font-family: var(--font-body); font-size: var(--text-body); color: var(--color-ink); background: var(--color-cream); padding: 0.75rem 1.5rem; border-radius: 2rem; text-decoration: none;`}
+          >
+            View Projects →
+          </a>
+          <a
+            href="/about"
+            style={`font-family: var(--font-body); font-size: var(--text-body); color: var(--color-cream); border: 1px solid var(--color-border-dark); padding: 0.75rem 1.5rem; border-radius: 2rem; text-decoration: none;`}
+          >
+            About Me
+          </a>
+        </div>
+        <!-- Social links -->
+        <div style="display: flex; gap: 1.5rem;">
+          <a href="https://www.linkedin.com/in/hemang-sharma" target="_blank" rel="noopener noreferrer"
+            style={`font-family: var(--font-mono); font-size: var(--text-label); color: var(--color-muted); text-decoration: none; letter-spacing: var(--tracking-wide);`}>
+            LinkedIn
+          </a>
+          <a href="https://dribbble.com" target="_blank" rel="noopener noreferrer"
+            style={`font-family: var(--font-mono); font-size: var(--text-label); color: var(--color-muted); text-decoration: none; letter-spacing: var(--tracking-wide);`}>
+            Dribbble
+          </a>
+          <a href="https://read.cv/hemang" target="_blank" rel="noopener noreferrer"
+            style={`font-family: var(--font-mono); font-size: var(--text-label); color: var(--color-muted); text-decoration: none; letter-spacing: var(--tracking-wide);`}>
+            Read.cv
+          </a>
+        </div>
+      </div>
+
+      <!-- Right: photo placeholder -->
+      <div style="display: flex; justify-content: flex-end;">
+        <div
+          style={`
+            width: 100%;
+            max-width: 22rem;
+            aspect-ratio: 3/4;
+            border-radius: 0.75rem;
+            background: var(--color-surface);
+            border: 1px solid var(--color-border-dark);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            position: relative;
+          `}
+        >
+          <!-- Decorative background pattern -->
+          <svg width="100%" height="100%" viewBox="0 0 320 420" preserveAspectRatio="xMidYMid slice" style="position: absolute; inset: 0; opacity: 0.15;">
+            <defs>
+              <pattern id="dot-grid" width="20" height="20" patternUnits="userSpaceOnUse">
+                <circle cx="10" cy="10" r="1.5" fill="var(--color-cream)"/>
+              </pattern>
+            </defs>
+            <rect width="100%" height="100%" fill="url(#dot-grid)"/>
+          </svg>
+          <!-- Initials -->
+          <div style="position: relative; text-align: center;">
+            <p style={`font-family: var(--font-display); font-size: 5rem; letter-spacing: var(--tracking-tight); line-height: 1; margin: 0; color: var(--color-cream); opacity: 0.12;`}>
+              HS
+            </p>
+            <p style={`font-family: var(--font-mono); font-size: var(--text-label); color: var(--color-muted); letter-spacing: var(--tracking-wide); text-transform: uppercase; margin: 1rem 0 0;`}>
+              Hemang Sharma
+            </p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Specialties strip -->
+  <section style={`max-width: var(--max-w-page); margin: 0 auto; padding: 0 var(--px-page) var(--section-gap); border-bottom: 1px solid var(--color-border-dark);`}>
+    <div style="display: flex; gap: 3rem; flex-wrap: wrap;">
+      <div>
+        <p style={`font-family: var(--font-mono); font-size: var(--text-label); color: var(--color-muted); letter-spacing: var(--tracking-wide); text-transform: uppercase; margin: 0 0 1rem;`}>
+          Industries
+        </p>
+        <div style="display: flex; flex-wrap: wrap; gap: 0.5rem;">
+          {["Insurance", "Healthcare", "Food Delivery", "Education"].map((item) => (
+            <span style={`font-family: var(--font-body); font-size: var(--text-label); color: var(--color-cream); border: 1px solid var(--color-border-dark); padding: 0.25rem 0.75rem; border-radius: 2rem;`}>
+              {item}
+            </span>
+          ))}
+        </div>
+      </div>
+      <div>
+        <p style={`font-family: var(--font-mono); font-size: var(--text-label); color: var(--color-muted); letter-spacing: var(--tracking-wide); text-transform: uppercase; margin: 0 0 1rem;`}>
+          Specialties
+        </p>
+        <div style="display: flex; flex-wrap: wrap; gap: 0.5rem;">
+          {["B2B Platforms", "Marketplace", "Customer Experience", "AI Products", "Enterprise Supply Chain"].map((item) => (
+            <span style={`font-family: var(--font-body); font-size: var(--text-label); color: var(--color-cream); border: 1px solid var(--color-border-dark); padding: 0.25rem 0.75rem; border-radius: 2rem;`}>
+              {item}
+            </span>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Featured Projects -->
+  <section style={`max-width: var(--max-w-page); margin: 0 auto; padding: var(--section-gap) var(--px-page);`}>
+    <h2 style={`font-family: var(--font-display); font-size: var(--text-h2); letter-spacing: var(--tracking-tight); text-transform: uppercase; margin: 0 0 2.5rem;`}>
+      Featured Projects
+    </h2>
+    <div style="display: flex; flex-direction: column; gap: 1.25rem;">
+      {projects.map((project, i) => (
+        <FeaturedCard
+          number={project.data.number}
+          title={project.data.title}
+          tags={project.data.type}
+          blurb={project.data.blurb}
+          href={`/projects/${project.data.slug}`}
+          theme={project.data.theme}
+          category={project.data.category}
+          imageRight={i % 2 === 0}
+        />
+      ))}
+    </div>
+  </section>
+
+  <!-- Work Experience -->
+  <section style={`max-width: var(--max-w-page); margin: 0 auto; padding: 0 var(--px-page) var(--section-gap); border-top: 1px solid var(--color-border-dark); padding-top: var(--section-gap);`}>
+    <h2 style={`font-family: var(--font-display); font-size: var(--text-h2); letter-spacing: var(--tracking-tight); text-transform: uppercase; margin: 0 0 2.5rem;`}>
+      Work Experience
+    </h2>
+    <div style={`border-top: 1px solid var(--color-border-dark);`}>
+      {experience.map((exp) => (
+        <ExperienceRow
+          role={exp.role}
+          company={exp.company}
+          period={exp.period}
+          location={exp.location}
+        />
+      ))}
+    </div>
+  </section>
+
+  <!-- Company logo strip -->
+  <section style={`max-width: var(--max-w-page); margin: 0 auto; padding: 0 var(--px-page) var(--section-gap);`}>
+    <p style={`font-family: var(--font-display); font-size: var(--text-h3); letter-spacing: var(--tracking-tight); margin: 0 0 2.5rem; color: var(--color-muted); max-width: 32ch;`}>
+      I Worked, Contributed, and Learned a lot from all of them.
+    </p>
+    <div style="display: flex; align-items: center; gap: 3rem; flex-wrap: wrap; border-top: 1px solid var(--color-border-dark); padding-top: 2rem;">
+      {companies.map(({ name, style }) => (
+        <span style={`font-family: var(--font-body); font-size: var(--text-body-lg); color: var(--color-muted); opacity: 0.65; ${style}`}>
+          {name}
+        </span>
+      ))}
+    </div>
+  </section>
+
+  <!-- Testimonials -->
+  <section style={`max-width: var(--max-w-page); margin: 0 auto; padding: 0 var(--px-page) var(--section-gap);`}>
+    <h2 style={`font-family: var(--font-display); font-size: var(--text-h2); letter-spacing: var(--tracking-tight); text-transform: uppercase; margin: 0 0 2.5rem;`}>
+      Testimonials
+    </h2>
+    <TestimonialGrid {testimonials} />
+  </section>
+
+</Layout>

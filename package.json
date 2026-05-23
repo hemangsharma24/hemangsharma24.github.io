@@ -1,0 +1,32 @@
+{
+  "name": "hemang-portfolio",
+  "version": "0.0.1",
+  "type": "module",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "astro": "^5",
+    "@astrojs/react": "^4",
+    "@astrojs/mdx": "^4",
+    "@tailwindcss/vite": "^4",
+    "tailwindcss": "^4",
+    "motion": "^11",
+    "react": "^19",
+    "react-dom": "^19",
+    "@fontsource-variable/bricolage-grotesque": "*",
+    "@fontsource/dm-sans": "*",
+    "@fontsource/dm-mono": "*"
+  },
+  "devDependencies": {
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "typescript": "^5"
+  },
+  "pnpm": {
+    "onlyBuiltDependencies": ["esbuild", "sharp"]
+  }
+}

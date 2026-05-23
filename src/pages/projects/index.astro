@@ -1,0 +1,110 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import FeaturedCard from "@/components/FeaturedCard.astro";
+import { getCollection } from "astro:content";
+
+const projects = (await getCollection("projects")).sort((a, b) => a.data.order - b.data.order);
+---
+
+<Layout title="Projects" description="Case studies by Hemang Sharma — UI/UX Product Designer.">
+
+  <!-- Header -->
+  <section style={`max-width: var(--max-w-page); margin: 0 auto; padding: var(--section-gap) var(--px-page) 4rem;`}>
+    <p style={`font-family: var(--font-mono); font-size: var(--text-label); color: var(--color-muted); letter-spacing: var(--tracking-wide); text-transform: uppercase; margin: 0 0 2rem;`}>
+      Selected Work
+    </p>
+    <h1 style={`font-family: var(--font-display); font-size: var(--text-h1); letter-spacing: var(--tracking-tight); line-height: var(--leading-tight); margin: 0; max-width: 16ch;`}>
+      Featured Projects
+    </h1>
+  </section>
+
+  <!-- Project cards (full-width alternating) -->
+  <section style={`max-width: var(--max-w-page); margin: 0 auto; padding: 0 var(--px-page) var(--section-gap);`}>
+    <div style="display: flex; flex-direction: column; gap: 1.25rem;">
+      {projects.map((project, i) => (
+        <FeaturedCard
+          number={project.data.number}
+          title={project.data.title}
+          tags={project.data.type}
+          blurb={project.data.blurb}
+          href={`/projects/${project.data.slug}`}
+          theme={project.data.theme}
+          category={project.data.category}
+          imageRight={i % 2 === 0}
+        />
+      ))}
+    </div>
+  </section>
+
+  <!-- Confidential note -->
+  <section style={`max-width: var(--max-w-page); margin: 0 auto; padding: 0 var(--px-page) var(--section-gap);`}>
+    <div style={`border: 1px solid var(--color-border-dark); border-radius: 0.75rem; padding: 2rem; max-width: 48rem;`}>
+      <p style={`font-family: var(--font-mono); font-size: var(--text-label); color: var(--color-muted); letter-spacing: var(--tracking-wide); text-transform: uppercase; margin: 0 0 0.75rem;`}>
+        Not everything I've built can be shown publicly
+      </p>
+      <p style={`font-family: var(--font-body); font-size: var(--text-body); line-height: var(--leading-body); color: var(--color-muted); margin: 0;`}>
+        A number of projects across Enterprise, AI and Internal platforms are intentionally not displayed due to project confidentiality and product restrictions.
+      </p>
+    </div>
+  </section>
+
+  <!-- Playground -->
+  <section style={`max-width: var(--max-w-page); margin: 0 auto; padding: 0 var(--px-page) var(--section-gap); border-top: 1px solid var(--color-border-dark); padding-top: var(--section-gap);`}>
+    <h2 style={`font-family: var(--font-display); font-size: var(--text-h2); letter-spacing: var(--tracking-tight); text-transform: uppercase; margin: 0 0 1rem;`}>
+      Playground
+    </h2>
+    <p style={`font-family: var(--font-body); font-size: var(--text-body); line-height: var(--leading-body); color: var(--color-muted); margin: 0 0 2.5rem; max-width: 52ch;`}>
+      A collection of concepts, experiments, and visual explorations I regularly share on Dribbble and Behance.
+    </p>
+    <!-- Playground grid: stylised placeholders -->
+    <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem;">
+      {[
+        { label: "Mobile UI Explorations", bg: "var(--color-gintaa)", fg: "var(--color-ink)" },
+        { label: "Dashboard Concepts", bg: "var(--color-fnol)", fg: "var(--color-cream)" },
+        { label: "Brand & Visual", bg: "var(--color-surface)", fg: "var(--color-cream)" },
+      ].map(({ label, bg, fg }) => (
+        <div
+          style={`
+            background: ${bg};
+            color: ${fg};
+            border-radius: 0.75rem;
+            aspect-ratio: 4/3;
+            display: flex;
+            align-items: flex-end;
+            padding: 1.5rem;
+            border: 1px solid var(--color-border-dark);
+          `}
+        >
+          <p style={`font-family: var(--font-body); font-size: var(--text-label); margin: 0; opacity: 0.75;`}>{label}</p>
+        </div>
+      ))}
+    </div>
+    <div style="margin-top: 2rem; display: flex; gap: 1rem;">
+      <a
+        href="https://dribbble.com"
+        target="_blank"
+        rel="noopener noreferrer"
+        style={`font-family: var(--font-body); font-size: var(--text-body); color: var(--color-cream); border: 1px solid var(--color-border-dark); padding: 0.75rem 1.5rem; border-radius: 2rem; text-decoration: none;`}
+      >
+        View on Dribbble →
+      </a>
+    </div>
+  </section>
+
+  <!-- Personal bio -->
+  <section style={`max-width: var(--max-w-page); margin: 0 auto; padding: 0 var(--px-page) var(--section-gap); border-top: 1px solid var(--color-border-dark); padding-top: var(--section-gap);`}>
+    <p style={`font-family: var(--font-body); font-size: var(--text-body); line-height: var(--leading-body); color: var(--color-muted); max-width: 65ch; margin: 0 0 1.5rem;`}>
+      Off the grid, I'm a music explorer who enjoys Linkin Park, Radiohead and Jagjit Singh, a Football fanatic, and a Movie buff with a very long watchlist. I also enjoy writing philosophical thoughts, short poems, and reflections inspired by everyday life.
+    </p>
+    <p style={`font-family: var(--font-body); font-size: var(--text-body); line-height: var(--leading-body); color: var(--color-muted); max-width: 65ch; margin: 0 0 2rem;`}>
+      I'm open to freelance opportunities, collaborations, and meaningful conversations around design, AI products, cinema or ideas worth building. Click the email below to copy it, and feel free to reach out anytime.
+    </p>
+    <a
+      href="mailto:kshamahemang@gmail.com"
+      style={`font-family: var(--font-mono); font-size: var(--text-label); color: var(--color-muted); text-decoration: none; letter-spacing: var(--tracking-wide);`}
+    >
+      kshamahemang@gmail.com
+    </a>
+  </section>
+
+</Layout>

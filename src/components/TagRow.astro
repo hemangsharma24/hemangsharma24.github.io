@@ -1,0 +1,25 @@
+---
+interface Props {
+  number?: string;
+  tags: string[];
+}
+
+const { number, tags } = Astro.props;
+---
+
+<div
+  style={`font-family: var(--font-mono); font-size: var(--text-label); color: var(--color-muted); display: flex; flex-wrap: wrap; align-items: center; gap: 0.5rem; letter-spacing: var(--tracking-wide); text-transform: uppercase;`}
+>
+  {number && (
+    <>
+      <span>{number}</span>
+      <span style="opacity: 0.4;">·</span>
+    </>
+  )}
+  {tags.map((tag, i) => (
+    <>
+      <span>{tag}</span>
+      {i < tags.length - 1 && <span style="opacity: 0.4;">·</span>}
+    </>
+  ))}
+</div>

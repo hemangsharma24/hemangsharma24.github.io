@@ -1,0 +1,45 @@
+---
+const navLinks = [
+  { label: "Home", href: "/" },
+  { label: "Projects", href: "/projects" },
+  { label: "About", href: "/about" },
+];
+
+const currentPath = Astro.url.pathname;
+---
+
+<header
+  style="border-bottom: 1px solid var(--color-border-dark);"
+  class="sticky top-0 z-50"
+  style:global="background-color: var(--color-ink);"
+>
+  <nav
+    style={`max-width: var(--max-w-page); margin: 0 auto; padding: 0 var(--px-page); display: flex; align-items: center; justify-content: space-between; height: 4rem;`}
+  >
+    <a
+      href="/"
+      style={`font-family: var(--font-mono); font-size: var(--text-label); letter-spacing: var(--tracking-wide); color: var(--color-cream); text-decoration: none; text-transform: uppercase;`}
+    >
+      HMNG SHRMA
+    </a>
+
+    <div style="display: flex; align-items: center; gap: 2rem;">
+      {navLinks.map(({ label, href }) => (
+        <a
+          href={href}
+          style={`font-family: var(--font-body); font-size: var(--text-label); color: ${currentPath === href ? "var(--color-cream)" : "var(--color-muted)"}; text-decoration: none; transition: color 0.2s;`}
+        >
+          {label}
+        </a>
+      ))}
+      <a
+        href="/resume.pdf"
+        target="_blank"
+        rel="noopener noreferrer"
+        style={`font-family: var(--font-body); font-size: var(--text-label); color: var(--color-ink); background: var(--color-cream); padding: 0.5rem 1rem; border-radius: 2rem; text-decoration: none; white-space: nowrap;`}
+      >
+        View Resume →
+      </a>
+    </div>
+  </nav>
+</header>
