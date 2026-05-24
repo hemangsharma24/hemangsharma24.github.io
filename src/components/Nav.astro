@@ -9,7 +9,9 @@ const currentPath = Astro.url.pathname;
 ---
 
 <header style="background: transparent; padding: 0.75rem 1.5rem;" class="sticky top-0 z-50">
-  <nav class="nav-inner" style={`background-color: var(--color-nav); border-radius: 0.75rem; max-width: var(--max-w-page); margin: 0 auto; padding: 0 var(--px-page); display: flex; align-items: center; justify-content: space-between; height: 3.5rem;`}>
+  <div style="position: relative; max-width: var(--max-w-page); margin: 0 auto;">
+    <div class="nav-depth-card" style="position: absolute; bottom: -0.4rem; left: 1.25rem; right: 1.25rem; height: 0.5rem; background-color: #8B5565; z-index: 1;"></div>
+    <nav class="nav-inner" style={`background-color: #4F1A2A; border-radius: 0; position: relative; z-index: 2; padding: 0 var(--px-page); display: flex; align-items: center; justify-content: space-between; height: 3.5rem;`}>
     <a
       href="/"
       style={`font-family: var(--font-mono); font-size: var(--text-label); letter-spacing: var(--tracking-wide); color: var(--color-cream); text-decoration: none; text-transform: uppercase;`}
@@ -17,25 +19,29 @@ const currentPath = Astro.url.pathname;
       HMNG SHRMA
     </a>
 
-    <!-- Desktop nav links -->
-    <div class="nav-links" style="display: flex; align-items: center; gap: 2rem;">
+    <!-- Desktop nav links (absolutely centered) -->
+    <div class="nav-links" style="position: absolute; left: 50%; transform: translateX(-50%); display: flex; align-items: center; gap: 2rem;">
       {navLinks.map(({ label, href }) => (
         <a
           href={href}
-          style={`font-family: var(--font-body); font-size: var(--text-label); color: ${currentPath === href ? "var(--color-cream)" : "rgba(244,237,217,0.55)"}; text-decoration: none; transition: color 0.2s;`}
+          style={`font-family: var(--font-body); font-size: var(--text-label); color: ${currentPath === href ? "#FFC7B8" : "#FF9D82"}; text-decoration: none; transition: color 0.2s;`}
         >
           {label}
         </a>
       ))}
+    </div>
+
+    <!-- Right side: resume button + hamburger -->
+    <div style="display: flex; align-items: center; gap: 1rem;">
       <a
         href="/resume.pdf"
         target="_blank"
         rel="noopener noreferrer"
+        class="nav-resume"
         style={`font-family: var(--font-body); font-size: var(--text-label); color: var(--color-ink); background: var(--color-cream); padding: 0.5rem 1.25rem; border-radius: 2rem; text-decoration: none; white-space: nowrap;`}
       >
         View Resume ↗
       </a>
-    </div>
 
     <!-- Hamburger button (mobile only) -->
     <button
@@ -49,15 +55,16 @@ const currentPath = Astro.url.pathname;
       <span class="bar" style="display: block; width: 22px; height: 2px; background: var(--color-cream); border-radius: 2px; transition: transform 0.25s, opacity 0.25s;"></span>
       <span class="bar" style="display: block; width: 22px; height: 2px; background: var(--color-cream); border-radius: 2px; transition: transform 0.25s, opacity 0.25s;"></span>
     </button>
+    </div>
   </nav>
 
   <!-- Mobile menu dropdown -->
-  <div id="mobile-menu" class="mobile-menu" style="display: none; background-color: var(--color-nav); border-radius: 0 0 0.75rem 0.75rem; border-top: 1px solid var(--color-border-dark);">
-    <div style={`max-width: var(--max-w-page); margin: 0 auto; padding: 1.25rem var(--px-page) 1.5rem; display: flex; flex-direction: column; gap: 0.25rem;`}>
+  <div id="mobile-menu" class="mobile-menu" style="display: none; background-color: #4F1A2A; border-radius: 0; border-top: 1px solid rgba(255,255,255,0.1);">
+    <div style={`padding: 1.25rem var(--px-page) 1.5rem; display: flex; flex-direction: column; gap: 0.25rem;`}>
       {navLinks.map(({ label, href }) => (
         <a
           href={href}
-          style={`font-family: var(--font-body); font-size: 1.0625rem; color: ${currentPath === href ? "var(--color-cream)" : "rgba(244,237,217,0.65)"}; text-decoration: none; padding: 0.625rem 0; border-bottom: 1px solid var(--color-border-dark); display: block;`}
+          style={`font-family: var(--font-body); font-size: 1.0625rem; color: ${currentPath === href ? "#FFC7B8" : "#FF9D82"}; text-decoration: none; padding: 0.625rem 0; border-bottom: 1px solid rgba(255,255,255,0.1); display: block;`}
         >
           {label}
         </a>
@@ -72,11 +79,13 @@ const currentPath = Astro.url.pathname;
       </a>
     </div>
   </div>
+  </div>
 </header>
 
 <style>
   @media (max-width: 639px) {
     .nav-links { display: none !important; }
+    .nav-resume { display: none !important; }
     .nav-hamburger { display: flex !important; }
     .nav-inner { padding: 0 1.25rem !important; }
   }

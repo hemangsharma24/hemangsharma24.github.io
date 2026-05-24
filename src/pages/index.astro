@@ -27,7 +27,7 @@ const companies = [
 <Layout title="Home" description="Hemang Sharma — UI/UX Product Designer. Based in Jaipur, India.">
 
   <!-- Hero -->
-  <section class="hero-section" style="max-width: var(--max-w-page); margin: 0 auto; border: 1px solid var(--color-border); margin-bottom: var(--section-gap);">
+  <section class="hero-section" style="width: calc(100% - 80px); max-width: var(--max-w-page); margin: 0 auto var(--section-gap); border: 1px solid var(--color-border);">
     <div class="hero-grid">
 
       <!-- Left: text content -->
@@ -64,7 +64,7 @@ const companies = [
         </div>
 
         <!-- Main heading -->
-        <h1 style="font-family: var(--font-display); font-size: clamp(1.875rem, 2.6vw, 3rem); font-weight: 400; line-height: 1.28; letter-spacing: -0.01em; color: var(--color-ink); margin: 0 0 1.5rem;">
+        <h1 style="font-family: var(--font-display); font-size: clamp(1.875rem, 2.6vw, 3rem); font-weight: 400; line-height: 1.28; letter-spacing: -0.01em; color: var(--color-primary); margin: 0 0 1.5rem;">
           Hello, I'm Hemang Sharma &#128073; <strong style="font-weight: 700;">UI UX Designer</strong> based in <span style="color: #E040A0;">Jaipur.</span> Most recently Founding Designer at OverseeAI, an AI SaaS for Insurance technology, used by clients in the US.
         </h1>
 
@@ -105,7 +105,7 @@ const companies = [
 
       <!-- Right: industries + specialties -->
       <div class="hero-right" style="padding: 2.5rem;">
-        <p style="font-family: var(--font-body); font-size: 0.875rem; color: var(--color-muted); margin: 0 0 1rem; line-height: 1.4;">
+        <p style="font-family: var(--font-body); font-size: 0.875rem; color: var(--color-muted); margin: calc(48px + 2.5rem) 0 1rem; line-height: 1.4;">
           Industries I worked in
         </p>
         <div style="display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 2.5rem;">
@@ -128,28 +128,36 @@ const companies = [
 
   <!-- Featured Projects -->
   <section class="page-section" style={`max-width: var(--max-w-page); margin: 0 auto; padding: var(--section-gap) var(--px-page);`}>
-    <h2 class="section-h2" style={`font-family: var(--font-display); font-size: clamp(1.75rem, 4vw, var(--text-h2)); letter-spacing: var(--tracking-tight); text-transform: uppercase; margin: 0 0 2.5rem; color: var(--color-ink);`}>
+    <h2 class="section-h2" style={`font-family: var(--font-display); font-size: clamp(1.75rem, 4vw, var(--text-h2)); letter-spacing: var(--tracking-tight); text-transform: uppercase; margin: 0 0 2.5rem; color: var(--color-primary);`}>
       Featured Projects
     </h2>
-    <div style="display: flex; flex-direction: column; gap: 1.25rem;">
+    <div class="cards-sticky-container" data-cards-parallax>
       {projects.map((project, i) => (
-        <FeaturedCard
-          number={project.data.number}
-          title={project.data.title}
-          tags={project.data.type}
-          blurb={project.data.blurb}
-          href={`/projects/${project.data.slug}`}
-          theme={project.data.theme}
-          category={project.data.category}
-          imageRight={i % 2 === 0}
-        />
+        <div
+          class="card-sticky-wrap"
+          data-card-index={i}
+          style={`position: sticky; top: calc(4rem + ${i * 28}px); height: 100vh; display: flex; align-items: center;`}
+        >
+          <div class="card-scale-inner" data-scale-wrap style="width: 100%;">
+            <FeaturedCard
+              number={project.data.number}
+              title={project.data.title}
+              tags={project.data.type}
+              blurb={project.data.blurb}
+              href={`/projects/${project.data.slug}`}
+              theme={project.data.theme}
+              category={project.data.category}
+              imageRight={i % 2 === 0}
+            />
+          </div>
+        </div>
       ))}
     </div>
   </section>
 
   <!-- Work Experience -->
   <section class="page-section" style={`max-width: var(--max-w-page); margin: 0 auto; padding: 0 var(--px-page) var(--section-gap); border-top: 1px solid var(--color-border); padding-top: var(--section-gap);`}>
-    <h2 class="section-h2" style={`font-family: var(--font-display); font-size: clamp(1.75rem, 4vw, var(--text-h2)); letter-spacing: var(--tracking-tight); text-transform: uppercase; margin: 0 0 2.5rem; color: var(--color-ink);`}>
+    <h2 class="section-h2" style={`font-family: var(--font-display); font-size: clamp(1.75rem, 4vw, var(--text-h2)); letter-spacing: var(--tracking-tight); text-transform: uppercase; margin: 0 0 2.5rem; color: var(--color-primary);`}>
       Work Experience
     </h2>
     <div style={`border-top: 1px solid var(--color-border);`}>
@@ -167,7 +175,7 @@ const companies = [
 
   <!-- Company logo grid -->
   <section class="page-section" style={`max-width: var(--max-w-page); margin: 0 auto; padding: 0 var(--px-page) var(--section-gap);`}>
-    <p style={`font-family: var(--font-display); font-size: clamp(1.25rem, 3vw, 2.5rem); letter-spacing: var(--tracking-tight); text-align: center; margin: 0 0 3rem; color: var(--color-ink);`}>
+    <p style={`font-family: var(--font-display); font-size: clamp(1.25rem, 3vw, 2.5rem); letter-spacing: var(--tracking-tight); text-align: center; margin: 0 0 3rem; color: var(--color-primary);`}>
       I Worked, Contributed, and Learned a lot from all of them.
     </p>
     <div class="logo-grid">
@@ -184,7 +192,7 @@ const companies = [
 
   <!-- Testimonials -->
   <section class="page-section" style={`max-width: var(--max-w-page); margin: 0 auto; padding: 0 var(--px-page) var(--section-gap); border-top: 1px solid var(--color-border); padding-top: var(--section-gap);`}>
-    <h2 class="section-h2" style={`font-family: var(--font-display); font-size: clamp(1.75rem, 4vw, var(--text-h2)); letter-spacing: var(--tracking-tight); text-transform: uppercase; margin: 0 0 2.5rem; color: var(--color-ink);`}>
+    <h2 class="section-h2" style={`font-family: var(--font-display); font-size: clamp(1.75rem, 4vw, var(--text-h2)); letter-spacing: var(--tracking-tight); text-transform: uppercase; margin: 0 0 2.5rem; color: var(--color-primary);`}>
       Testimonials
     </h2>
     <TestimonialGrid {testimonials} />
@@ -237,6 +245,11 @@ const companies = [
     padding-right: var(--px-page);
   }
 
+  /* Cards parallax */
+  .cards-sticky-container {
+    position: relative;
+  }
+
   /* Logo grid */
   .logo-grid {
     display: grid;
@@ -264,6 +277,7 @@ const companies = [
   /* ── Mobile (< 640px) ── */
   @media (max-width: 639px) {
     .hero-section {
+      width: calc(100% - 40px) !important;
       margin-bottom: 3rem !important;
     }
 
@@ -301,5 +315,59 @@ const companies = [
       padding: 0.75rem 1.25rem !important;
       word-break: break-all;
     }
+
+    .card-sticky-wrap {
+      position: static !important;
+      height: auto !important;
+      display: block !important;
+      margin-bottom: 1.25rem;
+    }
+
+    .card-scale-inner {
+      transform: none !important;
+    }
   }
 </style>
+
+<script>
+(function () {
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  if (window.innerWidth < 640) return;
+
+  const container = document.querySelector<HTMLElement>('[data-cards-parallax]');
+  if (!container) return;
+
+  const wrappers = Array.from(container.querySelectorAll<HTMLElement>('[data-card-index]'));
+  const numCards = wrappers.length;
+  if (!numCards) return;
+
+  let rafPending = false;
+
+  function update() {
+    const vh = window.innerHeight;
+    const sectionTop = container!.getBoundingClientRect().top + window.scrollY;
+    const scrolledIntoSection = window.scrollY - sectionTop;
+
+    wrappers.forEach((wrapper, i) => {
+      const scaleWrap = wrapper.querySelector<HTMLElement>('[data-scale-wrap]');
+      if (!scaleWrap) return;
+
+      const targetScale = 1 - ((numCards - i) * 0.05);
+      const progress = Math.max(0, Math.min(1, (scrolledIntoSection - i * vh) / vh));
+      const scale = 1 - (1 - targetScale) * progress;
+
+      scaleWrap.style.transform = `scale(${scale}) translateZ(0)`;
+    });
+
+    rafPending = false;
+  }
+
+  update();
+  window.addEventListener('scroll', () => {
+    if (!rafPending) {
+      rafPending = true;
+      requestAnimationFrame(update);
+    }
+  }, { passive: true });
+})();
+</script>

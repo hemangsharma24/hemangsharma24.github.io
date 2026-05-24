@@ -10,6 +10,7 @@
   --font-mono:    "DM Mono", monospace;
 
   /* Base palette */
+  --color-primary: #4F1A2A;
   --color-ink:    #1E0D0D;
   --color-cream:  #F9F5F0;
   --color-muted:  #7A6363;
