@@ -4,6 +4,7 @@ interface Testimonial {
   nameNote?: string;
   role: string;
   initials: string;
+  avatar?: string;
   quote: string;
   attribution?: string;
 }
@@ -23,24 +24,34 @@ const avatarColors = [
 ---
 
 <div class="testimonial-grid">
-  {testimonials.map(({ name, nameNote, role, initials, quote }, i) => {
+  {testimonials.map(({ name, nameNote, role, initials, avatar, quote }, i) => {
     const colors = avatarColors[i % avatarColors.length];
     return (
       <div style={`background: #fff; border: 1px solid var(--color-border); border-radius: 0.75rem; padding: 1.75rem; display: flex; flex-direction: column; gap: 1.25rem;`}>
         <!-- Header: avatar + name -->
         <div style="display: flex; align-items: center; gap: 0.875rem;">
-          <div
-            style={`
-              width: 2.75rem; height: 2.75rem; border-radius: 50%;
-              background: ${colors.bg};
-              color: ${colors.text};
-              display: flex; align-items: center; justify-content: center;
-              font-family: var(--font-body); font-size: 0.875rem; font-weight: 700;
-              flex-shrink: 0;
-            `}
-          >
-            {initials}
-          </div>
+          {avatar ? (
+            <img
+              src={avatar}
+              alt={name}
+              width="44"
+              height="44"
+              style="width: 2.75rem; height: 2.75rem; border-radius: 50%; object-fit: cover; flex-shrink: 0;"
+            />
+          ) : (
+            <div
+              style={`
+                width: 2.75rem; height: 2.75rem; border-radius: 50%;
+                background: ${colors.bg};
+                color: ${colors.text};
+                display: flex; align-items: center; justify-content: center;
+                font-family: var(--font-body); font-size: 0.875rem; font-weight: 700;
+                flex-shrink: 0;
+              `}
+            >
+              {initials}
+            </div>
+          )}
           <div>
             <p style={`font-family: var(--font-body); font-size: var(--text-body); font-weight: 600; margin: 0 0 0.1rem; color: var(--color-ink);`}>
               {name}{nameNote && <span style={`font-weight: 400; color: var(--color-muted); font-size: var(--text-label);`}> {nameNote}</span>}
