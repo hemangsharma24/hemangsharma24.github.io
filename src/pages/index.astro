@@ -105,7 +105,7 @@ const companies = [
 
       <!-- Right: industries + specialties -->
       <div class="hero-right" style="padding: 2.5rem;">
-        <p style="font-family: var(--font-body); font-size: 0.875rem; color: var(--color-muted); margin: calc(48px + 2.5rem) 0 1rem; line-height: 1.4;">
+        <p class="hero-industries-label" style="font-family: var(--font-body); font-size: 0.875rem; color: var(--color-muted); line-height: 1.4;">
           Industries I worked in
         </p>
         <div style="display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 2.5rem;">
@@ -274,8 +274,16 @@ const companies = [
     }
   }
 
+  /* Industries label: offset to align with body text below face icon on desktop */
+  .hero-industries-label {
+    margin: calc(48px + 2.5rem) 0 1rem;
+  }
+
   /* ── Mobile (< 640px) ── */
   @media (max-width: 639px) {
+    .hero-industries-label {
+      margin: 0 0 1rem;
+    }
     .hero-section {
       width: calc(100% - 40px) !important;
       margin-bottom: 3rem !important;

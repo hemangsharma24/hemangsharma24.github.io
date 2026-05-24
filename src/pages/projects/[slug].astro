@@ -87,9 +87,9 @@ const next = currentIndex < allProjects.length - 1 ? allProjects[currentIndex + 
 
       <!-- Stats bar -->
       {entry.data.stats && entry.data.stats.length > 0 && (
-        <div style={`display: grid; grid-template-columns: repeat(${entry.data.stats.length}, 1fr); border-top: 1px solid ${borderColor}; border-bottom: 1px solid ${borderColor};`}>
+        <div class="stats-bar" style={`display: grid; grid-template-columns: repeat(${entry.data.stats.length}, 1fr); border-top: 1px solid ${borderColor}; border-bottom: 1px solid ${borderColor}; --stats-border: ${borderColor};`}>
           {entry.data.stats.map(({ label, value }, i) => (
-            <div style={`padding: 1.25rem ${i > 0 ? "1.5rem" : "0"}; ${i > 0 ? `border-left: 1px solid ${borderColor};` : ""}`}>
+            <div class="stats-cell" style={`padding: 1.25rem ${i > 0 ? "1.5rem" : "0"}; ${i > 0 ? `border-left: 1px solid ${borderColor};` : ""}`}>
               <p style={`font-family: var(--font-mono); font-size: 0.75rem; letter-spacing: var(--tracking-wide); text-transform: uppercase; opacity: 0.5; margin: 0 0 0.35rem;`}>{label}</p>
               <p style={`font-family: var(--font-body); font-size: var(--text-body); margin: 0; font-weight: 500;`}>{value}</p>
             </div>
@@ -126,7 +126,7 @@ const next = currentIndex < allProjects.length - 1 ? allProjects[currentIndex + 
   </article>
 
   <!-- Prev / Next -->
-  <nav style={`max-width: var(--max-w-page); margin: 0 auto; padding: 0 var(--px-page) var(--section-gap); display: flex; justify-content: space-between; border-top: 1px solid var(--color-border); padding-top: 2.5rem;`}>
+  <nav class="prev-next-nav" style={`max-width: var(--max-w-page); margin: 0 auto; padding: 0 var(--px-page) var(--section-gap); display: flex; justify-content: space-between; border-top: 1px solid var(--color-border); padding-top: 2.5rem;`}>
     <div>
       {prev && (
         <a href={`/projects/${prev.data.slug}`}
@@ -148,6 +148,27 @@ const next = currentIndex < allProjects.length - 1 ? allProjects[currentIndex + 
 </Layout>
 
 <style>
+  @media (max-width: 639px) {
+    .stats-bar {
+      grid-template-columns: repeat(2, 1fr) !important;
+    }
+
+    .stats-cell {
+      border-left: none !important;
+      padding: 1rem 0.75rem !important;
+    }
+
+    /* Re-add separator between col 1 and col 2 in each row */
+    .stats-cell:nth-child(even) {
+      border-left: 1px solid var(--stats-border) !important;
+    }
+
+    .prev-next-nav {
+      flex-direction: column;
+      gap: 1rem;
+    }
+  }
+
   .prose :global(h2) {
     font-family: var(--font-display);
     font-size: var(--text-h3);

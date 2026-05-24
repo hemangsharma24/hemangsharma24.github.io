@@ -29,7 +29,7 @@ const certifications = [
 
   <!-- Hero -->
   <section style={`max-width: var(--max-w-page); margin: 0 auto; padding: var(--section-gap) var(--px-page) 4rem;`}>
-    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start;">
+    <div class="about-hero-grid">
       <div>
         <p style={`font-family: var(--font-mono); font-size: var(--text-label); color: var(--color-muted); letter-spacing: var(--tracking-wide); text-transform: uppercase; margin: 0 0 2rem;`}>About</p>
         <h1 style={`font-family: var(--font-display); font-size: clamp(2rem, 3.2vw, 4rem); letter-spacing: var(--tracking-tight); line-height: var(--leading-tight); margin: 0 0 2rem; color: var(--color-ink);`}>
@@ -89,12 +89,12 @@ const certifications = [
     <h2 style={`font-family: var(--font-display); font-size: var(--text-h2); letter-spacing: var(--tracking-tight); text-transform: uppercase; margin: 0 0 2.5rem; color: var(--color-ink);`}>Education</h2>
     <div style={`border-top: 1px solid var(--color-border);`}>
       {education.map(({ credential, institution, period }) => (
-        <div style={`display: grid; grid-template-columns: 1fr auto; gap: 1rem; align-items: start; padding: 1.5rem 0; border-bottom: 1px solid var(--color-border);`}>
+        <div class="edu-cert-row">
           <div>
             <p style={`font-family: var(--font-body); font-size: var(--text-body); margin: 0 0 0.25rem; color: var(--color-ink);`}>{credential}</p>
             <p style={`font-family: var(--font-body); font-size: var(--text-label); color: var(--color-muted); margin: 0;`}>{institution}</p>
           </div>
-          <p style={`font-family: var(--font-mono); font-size: var(--text-label); color: var(--color-muted); margin: 0; white-space: nowrap;`}>{period}</p>
+          <p class="edu-cert-meta" style={`font-family: var(--font-mono); font-size: var(--text-label); color: var(--color-muted); margin: 0;`}>{period}</p>
         </div>
       ))}
     </div>
@@ -105,9 +105,9 @@ const certifications = [
     <h2 style={`font-family: var(--font-display); font-size: var(--text-h2); letter-spacing: var(--tracking-tight); text-transform: uppercase; margin: 0 0 2.5rem; color: var(--color-ink);`}>Certifications</h2>
     <div style={`border-top: 1px solid var(--color-border);`}>
       {certifications.map(({ credential, institution }) => (
-        <div style={`display: grid; grid-template-columns: 1fr auto; gap: 1rem; align-items: center; padding: 1.25rem 0; border-bottom: 1px solid var(--color-border);`}>
+        <div class="edu-cert-row">
           <p style={`font-family: var(--font-body); font-size: var(--text-body); margin: 0; color: var(--color-ink);`}>{credential}</p>
-          <p style={`font-family: var(--font-mono); font-size: var(--text-label); color: var(--color-muted); margin: 0; white-space: nowrap; opacity: 0.7;`}>{institution}</p>
+          <p class="edu-cert-meta" style={`font-family: var(--font-mono); font-size: var(--text-label); color: var(--color-muted); margin: 0; opacity: 0.7;`}>{institution}</p>
         </div>
       ))}
     </div>
@@ -135,3 +135,43 @@ const certifications = [
   </section>
 
 </Layout>
+
+<style>
+  .about-hero-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: start;
+  }
+
+  .edu-cert-row {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 1rem;
+    align-items: start;
+    padding: 1.375rem 0;
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  @media (min-width: 640px) and (max-width: 1023px) {
+    .about-hero-grid {
+      gap: 2.5rem;
+    }
+  }
+
+  @media (max-width: 639px) {
+    .about-hero-grid {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+
+    .edu-cert-row {
+      grid-template-columns: 1fr;
+      gap: 0.25rem;
+    }
+
+    .edu-cert-meta {
+      white-space: normal;
+    }
+  }
+</style>

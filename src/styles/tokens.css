@@ -71,3 +71,23 @@
     letter-spacing: var(--tracking-tight);
   }
 }
+
+/* Responsive token overrides */
+@media (min-width: 640px) and (max-width: 1023px) {
+  :root {
+    --px-page:     1.5rem;
+    --section-gap: 4rem;
+    --text-h1:     3rem;
+    --text-h2:     2.25rem;
+  }
+}
+
+@media (max-width: 639px) {
+  :root {
+    --px-page:     1.25rem;
+    --px-content:  1.25rem;
+    --section-gap: 3rem;
+    --text-h1:     2.25rem;
+    --text-h2:     1.75rem;
+  }
+}
