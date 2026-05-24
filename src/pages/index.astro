@@ -174,7 +174,7 @@ const companies = [
       {companies.map(({ name, logo }) => (
         <div style={`border-right: 1px solid var(--color-border); border-bottom: 1px solid var(--color-border); padding: 2rem 1.5rem; display: flex; align-items: center; justify-content: center; min-height: 5rem;`}>
           {logo
-            ? <img src={logo} alt={name} style="max-height: 2rem; max-width: 7.5rem; width: 100%; object-fit: contain; opacity: 0.65;" />
+            ? <img src={logo} alt={name} style="max-height: 2rem; max-width: 7.5rem; width: 100%; object-fit: contain;" />
             : <span style={`font-family: var(--font-body); font-size: var(--text-body); color: var(--color-ink); opacity: 0.65; text-align: center; font-weight: 500;`}>{name}</span>
           }
         </div>

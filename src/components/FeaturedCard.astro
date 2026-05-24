@@ -27,23 +27,15 @@ const fgMap: Record<string, string> = {
 };
 
 const imageMap: Record<string, string> = {
-  gintaa: "/gintaa-project.png",
-  fnol:   "/fnol-project.png",
-  bosch:  "/bosch-project.png",
-  bolna:  "/bolna-project.png",
-};
-
-const imagePosMap: Record<string, string> = {
-  gintaa: "center 22%",
-  fnol:   "center 18%",
-  bosch:  "center 20%",
-  bolna:  "center 18%",
+  gintaa: "/home_page_assets/Featured Projects Section/GINTAA Card.png",
+  fnol:   "/home_page_assets/Featured Projects Section/Claims Insurance Card.png",
+  bosch:  "/home_page_assets/Featured Projects Section/BOSCH CX Card.png",
+  bolna:  "/home_page_assets/Featured Projects Section/BOLNA Card.png",
 };
 
 const bg = bgMap[theme];
 const fg = fgMap[theme];
 const img = imageMap[theme];
-const imgPos = imagePosMap[theme];
 
 const borderColor = fg === "#1E0D0D"
   ? "rgba(30,13,13,0.18)"
@@ -56,9 +48,8 @@ const mutedFg = fg === "#1E0D0D"
 <a
   href={href}
   class="featured-card"
+  data-parallax-card
   style={`background: ${bg}; color: ${fg};`}
-  onmouseover="this.style.transform='translateY(-2px)';this.style.boxShadow='0 12px 40px rgba(0,0,0,0.2)'"
-  onmouseout="this.style.transform='translateY(0)';this.style.boxShadow='none'"
 >
   <!-- Text column -->
   <div
@@ -121,15 +112,10 @@ const mutedFg = fg === "#1E0D0D"
       `}
     >
       <img
+        data-parallax-img
         src={img}
         alt={title}
-        style={`
-          width: 100%;
-          height: 100%;
-          object-fit: cover;
-          object-position: ${imgPos};
-          transform: scale(1.02);
-        `}
+        style="width: 100%; height: 100%; object-fit: contain; object-position: center center; transform: scale(1.12) translateY(0px);"
         loading="lazy"
       />
     </div>
@@ -145,6 +131,11 @@ const mutedFg = fg === "#1E0D0D"
     overflow: hidden;
     min-height: 22rem;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
+    will-change: transform;
+  }
+
+  [data-parallax-img] {
+    will-change: transform;
   }
 
   .card-text {
@@ -188,3 +179,81 @@ const mutedFg = fg === "#1E0D0D"
     }
   }
 </style>
+
+<script>
+(function () {
+  const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const isTouchDevice  = window.matchMedia('(hover: none)').matches;
+  const cards = Array.from(document.querySelectorAll<HTMLElement>('[data-parallax-card]'));
+  if (!cards.length) return;
+
+  // ── Scroll parallax on images ──────────────────────────────────────────
+  if (!prefersReduced) {
+    let scrollRafPending = false;
+
+    function updateScrollParallax() {
+      const vh = window.innerHeight;
+      const viewportCenter = vh / 2;
+
+      cards.forEach(card => {
+        const img = card.querySelector<HTMLElement>('[data-parallax-img]');
+        if (!img) return;
+        const rect = card.getBoundingClientRect();
+        const cardCenter = rect.top + rect.height / 2;
+        const maxDistance = viewportCenter + rect.height / 2;
+        const normalized = Math.max(-1, Math.min(1, (cardCenter - viewportCenter) / maxDistance));
+        const translateY = normalized * 30;
+        img.style.transform = `scale(1.12) translateY(${translateY}px)`;
+      });
+
+      scrollRafPending = false;
+    }
+
+    updateScrollParallax();
+
+    window.addEventListener('scroll', () => {
+      if (!scrollRafPending) {
+        scrollRafPending = true;
+        requestAnimationFrame(updateScrollParallax);
+      }
+    }, { passive: true });
+  }
+
+  // ── Mouse tilt on cards (desktop only) ────────────────────────────────
+  if (!isTouchDevice) {
+    const TILT_MAX = 5;
+    const rafHandles = new WeakMap<HTMLElement, number>();
+
+    cards.forEach(card => {
+      card.addEventListener('mousemove', (e: MouseEvent) => {
+        if (rafHandles.has(card)) cancelAnimationFrame(rafHandles.get(card)!);
+
+        const id = requestAnimationFrame(() => {
+          const rect = card.getBoundingClientRect();
+          const normX = (e.clientX - (rect.left + rect.width  / 2)) / (rect.width  / 2);
+          const normY = (e.clientY - (rect.top  + rect.height / 2)) / (rect.height / 2);
+          const rotateY =  normX * TILT_MAX;
+          const rotateX = -normY * TILT_MAX;
+
+          card.style.transition = 'box-shadow 0.3s ease';
+          card.style.transform  = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateZ(0)`;
+          card.style.boxShadow  = '0 12px 40px rgba(0,0,0,0.2)';
+          rafHandles.delete(card);
+        });
+
+        rafHandles.set(card, id);
+      });
+
+      card.addEventListener('mouseleave', () => {
+        if (rafHandles.has(card)) {
+          cancelAnimationFrame(rafHandles.get(card)!);
+          rafHandles.delete(card);
+        }
+        card.style.transition = 'transform 0.4s ease, box-shadow 0.3s ease';
+        card.style.transform  = 'perspective(1000px) rotateX(0deg) rotateY(0deg) translateZ(0)';
+        card.style.boxShadow  = 'none';
+      });
+    });
+  }
+})();
+</script>
