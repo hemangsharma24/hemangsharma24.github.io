@@ -135,7 +135,7 @@ const companies = [
         <div
           class="card-sticky-wrap"
           data-card-index={i}
-          style={`position: sticky; top: calc(4rem + ${i * 28}px); height: 100vh; display: flex; align-items: center;`}
+          style={`position: sticky; top: calc(4rem + ${i * 52}px); height: 100vh; display: flex; align-items: flex-start; z-index: ${i + 1};`}
         >
           <div class="card-scale-inner" data-scale-wrap style="width: 100%;">
             <FeaturedCard
@@ -151,6 +151,8 @@ const companies = [
           </div>
         </div>
       ))}
+      {/* Spacer so the last card has a full viewport of stable sticky dwell time */}
+      <div aria-hidden="true" style={`height: calc(100vh + ${(projects.length - 1) * 52}px); pointer-events: none;`} />
     </div>
   </section>
 
@@ -172,33 +174,39 @@ const companies = [
     </div>
   </section>
 
-  <!-- Company logo grid -->
-  <div class="brands-outer">
-    <section class="page-section" style="padding: 1rem 1rem var(--section-gap);">
-      <p style={`font-family: var(--font-display); font-size: clamp(1.25rem, 3vw, 2.5rem); letter-spacing: var(--tracking-tight); text-align: center; margin: 0 0 3rem; color: var(--color-primary);`}>
-        I Worked, Contributed, and Learned a lot from all of them.
-      </p>
+  <!-- Brands heading — outside the frame -->
+  <p class="brands-heading">I Worked, Contributed, and Learned a lot from all of them.</p>
+
+  <!-- Single shared frame: brands + testimonials, full-width borders -->
+  <div class="brands-testimonials-frame">
+
+    <!-- Logo grid — col-guides live here so they stop at the frame-divider -->
+    <div style="position: relative;">
       <div class="logo-grid">
         {companies.map(({ name, logo }) => (
-          <div style={`border-right: 1px solid var(--color-border); border-bottom: 1px solid var(--color-border); padding: 2rem 1.5rem; display: flex; align-items: center; justify-content: center; min-height: 5rem;`}>
+          <div style={`border-right: 1px solid var(--color-border); border-bottom: 1px solid var(--color-border); padding: 2.5rem 2rem; display: flex; align-items: center; justify-content: center; min-height: 7rem;`}>
             {logo
-              ? <img src={logo} alt={name} style="max-height: 2rem; max-width: 7.5rem; width: 100%; object-fit: contain;" />
+              ? <img src={logo} alt={name} style="max-height: 3.5rem; max-width: 12rem; width: 100%; object-fit: contain;" />
               : <span style={`font-family: var(--font-body); font-size: var(--text-body); color: var(--color-ink); opacity: 0.65; text-align: center; font-weight: 500;`}>{name}</span>
             }
           </div>
         ))}
       </div>
-    </section>
-  </div>
+      <!-- Column guides: top of frame → frame-divider (top of testimonials) -->
+      <div class="col-guide col-guide-2"></div>
+      <div class="col-guide col-guide-4"></div>
+    </div>
 
-  <!-- Testimonials -->
-  <div class="testimonial-outer">
-    <section class="page-section" style={`padding: 1rem 1rem var(--section-gap);`}>
+    <!-- Full-width divider between logos and testimonials -->
+    <div class="frame-divider"></div>
+
+    <!-- Testimonials — full width within the frame -->
+    <div style="padding: 4rem 1rem var(--section-gap);">
       <h2 class="section-h2" style={`font-family: var(--font-display); font-size: clamp(1.75rem, 4vw, var(--text-h2)); letter-spacing: var(--tracking-tight); text-transform: uppercase; margin: 0 0 2.5rem; color: var(--color-primary);`}>
         Testimonials
       </h2>
       <TestimonialGrid {testimonials} />
-    </section>
+    </div>
   </div>
 
   <!-- Personal bio section -->
@@ -236,25 +244,27 @@ const companies = [
 </Layout>
 
 <style>
-  /* Testimonials outer border — contained, no full-width bleed */
-  .testimonial-outer {
-    width: calc(100% - 80px);
+  /* Brands heading — free-floating above the frame */
+  .brands-heading {
+    font-family: var(--font-display);
+    font-size: clamp(1.25rem, 3vw, 2.5rem);
+    letter-spacing: var(--tracking-tight);
+    text-align: center;
+    color: var(--color-primary);
     max-width: var(--max-w-page);
-    margin: 0 auto var(--section-gap);
-    border: 1px solid var(--color-border-hero);
+    margin: 0 auto 2rem;
+    padding: 0 var(--px-page);
   }
 
-  /* Brands outer border — full-width bleed (mirrors hero section frame) */
-  .brands-outer {
+  /* Single shared frame — full-width bleed borders, brands + testimonials together */
+  .brands-testimonials-frame {
     position: relative;
-    width: calc(100% - 80px);
+    width: 100%;
     max-width: var(--max-w-page);
     margin: 0 auto var(--section-gap);
-    border-left: 1px solid var(--color-border-hero);
-    border-right: 1px solid var(--color-border-hero);
   }
-  .brands-outer::before,
-  .brands-outer::after {
+  .brands-testimonials-frame::before,
+  .brands-testimonials-frame::after {
     content: '';
     position: absolute;
     left: 50%;
@@ -263,8 +273,36 @@ const companies = [
     height: 1px;
     background: var(--color-border-hero);
   }
-  .brands-outer::before { top: 0; }
-  .brands-outer::after  { bottom: 0; }
+  .brands-testimonials-frame::before { top: 0; }
+  .brands-testimonials-frame::after  { bottom: 0; }
+
+  /* Full-width divider between logo grid and testimonials */
+  .frame-divider {
+    position: relative;
+    height: 1px;
+  }
+  .frame-divider::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100vw;
+    height: 1px;
+    background: var(--color-border-hero);
+  }
+
+  /* Vertical column guides spanning full frame height */
+  .col-guide {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 1px;
+    background: var(--color-border);
+    pointer-events: none;
+  }
+  .col-guide-2 { left: 40%; }
+  .col-guide-4 { left: 80%; }
 
   /* Hero */
   .hero-section {
@@ -299,13 +337,17 @@ const companies = [
     position: relative;
   }
 
+  .card-scale-inner {
+    transform-origin: top center;
+  }
+
   /* Logo grid */
   .logo-grid {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
-    border-top: 1px solid var(--color-border);
-    border-left: 1px solid var(--color-border);
   }
+  /* Remove right border from the last column on each row */
+  .logo-grid > div:nth-child(5n) { border-right: none !important; }
 
   /* ── Tablet (640–1023px) ── */
   @media (min-width: 640px) and (max-width: 1023px) {
@@ -316,6 +358,13 @@ const companies = [
     .logo-grid {
       grid-template-columns: repeat(4, 1fr);
     }
+    .logo-grid > div:nth-child(5n) { border-right: revert !important; }
+    .logo-grid > div:nth-child(4n) { border-right: none !important; }
+
+    /* 4-col grid: 2nd divider at 50%, 4th is the right edge so hide it */
+    .col-guide-2 { left: 50%; }
+    .col-guide-4 { display: none; }
+
 
     .page-section {
       padding-left: 1.5rem;
@@ -330,16 +379,15 @@ const companies = [
 
   /* ── Mobile (< 640px) ── */
   @media (max-width: 639px) {
-    .testimonial-outer {
-      width: calc(100% - 40px);
-    }
-
-    .brands-outer {
-      width: calc(100% - 40px);
-    }
-    .brands-outer::before,
-    .brands-outer::after {
+    .brands-testimonials-frame::before,
+    .brands-testimonials-frame::after {
       width: 100%;
+    }
+    .frame-divider::after {
+      width: 100%;
+    }
+    .col-guide {
+      display: none;
     }
 
     .hero-section::before,
@@ -386,6 +434,8 @@ const companies = [
     .logo-grid {
       grid-template-columns: repeat(2, 1fr);
     }
+    .logo-grid > div:nth-child(5n) { border-right: revert !important; }
+    .logo-grid > div:nth-child(2n) { border-right: none !important; }
 
     .page-section {
       padding-left: 1.25rem !important;
@@ -403,23 +453,12 @@ const companies = [
       word-break: break-all;
     }
 
-    .card-sticky-wrap {
-      position: static !important;
-      height: auto !important;
-      display: block !important;
-      margin-bottom: 1.25rem;
-    }
-
-    .card-scale-inner {
-      transform: none !important;
-    }
   }
 </style>
 
 <script>
 (function () {
   if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-  if (window.innerWidth < 640) return;
 
   const container = document.querySelector<HTMLElement>('[data-cards-parallax]');
   if (!container) return;
