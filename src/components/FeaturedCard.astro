@@ -55,29 +55,15 @@ const mutedFg = fg === "#1E0D0D"
 
 <a
   href={href}
-  style={`
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    background: ${bg};
-    color: ${fg};
-    border-radius: 0.75rem;
-    text-decoration: none;
-    overflow: hidden;
-    min-height: 22rem;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-  `}
+  class="featured-card"
+  style={`background: ${bg}; color: ${fg};`}
   onmouseover="this.style.transform='translateY(-2px)';this.style.boxShadow='0 12px 40px rgba(0,0,0,0.2)'"
   onmouseout="this.style.transform='translateY(0)';this.style.boxShadow='none'"
 >
   <!-- Text column -->
   <div
-    style={`
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      padding: 2.5rem;
-      order: ${imageRight ? 0 : 1};
-    `}
+    class="card-text"
+    style={`order: ${imageRight ? 0 : 1};`}
   >
     <div>
       {category && (
@@ -122,11 +108,8 @@ const mutedFg = fg === "#1E0D0D"
 
   <!-- Image column -->
   <div
-    style={`
-      order: ${imageRight ? 1 : 0};
-      overflow: hidden;
-      position: relative;
-    `}
+    class="card-image"
+    style={`order: ${imageRight ? 1 : 0};`}
   >
     <div
       style={`
@@ -152,3 +135,56 @@ const mutedFg = fg === "#1E0D0D"
     </div>
   </div>
 </a>
+
+<style>
+  .featured-card {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    border-radius: 0.75rem;
+    text-decoration: none;
+    overflow: hidden;
+    min-height: 22rem;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .card-text {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 2.5rem;
+  }
+
+  .card-image {
+    overflow: hidden;
+    position: relative;
+  }
+
+  @media (max-width: 639px) {
+    .featured-card {
+      grid-template-columns: 1fr;
+      min-height: unset;
+    }
+
+    .card-text {
+      order: 0 !important;
+      padding: 1.75rem;
+    }
+
+    .card-image {
+      order: 1 !important;
+      height: 14rem;
+    }
+
+    .card-image > div {
+      position: absolute;
+      inset: 0 !important;
+      border-radius: 0 !important;
+    }
+  }
+
+  @media (min-width: 640px) and (max-width: 1023px) {
+    .card-text {
+      padding: 2rem;
+    }
+  }
+</style>

@@ -10,16 +10,7 @@ interface Props {
 const { role, company, period, location, type } = Astro.props;
 ---
 
-<div
-  style={`
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    gap: 1rem;
-    align-items: center;
-    padding: 1.25rem 0;
-    border-bottom: 1px solid var(--color-border);
-  `}
->
+<div class="exp-row">
   <!-- Left: Role + Period -->
   <div>
     <p style={`font-family: var(--font-body); font-size: var(--text-body); font-weight: 600; margin: 0 0 0.2rem; color: var(--color-ink);`}>
@@ -39,7 +30,7 @@ const { role, company, period, location, type } = Astro.props;
   </div>
 
   <!-- Right: Location + Type -->
-  <div style="display: flex; align-items: center; gap: 0.5rem; justify-content: flex-end;">
+  <div class="exp-meta" style="display: flex; align-items: center; gap: 0.5rem; justify-content: flex-end;">
     <p style={`font-family: var(--font-body); font-size: var(--text-label); color: var(--color-muted); margin: 0;`}>
       {location}
     </p>
@@ -51,3 +42,37 @@ const { role, company, period, location, type } = Astro.props;
     )}
   </div>
 </div>
+
+<style>
+  .exp-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 1rem;
+    align-items: center;
+    padding: 1.25rem 0;
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  @media (max-width: 639px) {
+    .exp-row {
+      grid-template-columns: 1fr;
+      gap: 0.4rem;
+      padding: 1rem 0;
+    }
+
+    .exp-meta {
+      justify-content: flex-start !important;
+    }
+  }
+
+  @media (min-width: 640px) and (max-width: 1023px) {
+    .exp-row {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .exp-meta {
+      grid-column: 1 / -1;
+      justify-content: flex-start !important;
+    }
+  }
+</style>

@@ -22,7 +22,7 @@ const avatarColors = [
 ];
 ---
 
-<div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem;">
+<div class="testimonial-grid">
   {testimonials.map(({ name, nameNote, role, initials, quote }, i) => {
     const colors = avatarColors[i % avatarColors.length];
     return (
@@ -59,3 +59,17 @@ const avatarColors = [
     );
   })}
 </div>
+
+<style>
+  .testimonial-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+
+  @media (max-width: 639px) {
+    .testimonial-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

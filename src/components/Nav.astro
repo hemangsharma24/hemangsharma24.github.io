@@ -9,7 +9,7 @@ const currentPath = Astro.url.pathname;
 ---
 
 <header style="background-color: var(--color-ink); border-bottom: 1px solid var(--color-border-dark);" class="sticky top-0 z-50">
-  <nav style={`max-width: var(--max-w-page); margin: 0 auto; padding: 0 var(--px-page); display: flex; align-items: center; justify-content: space-between; height: 3.5rem;`}>
+  <nav class="nav-inner" style={`max-width: var(--max-w-page); margin: 0 auto; padding: 0 var(--px-page); display: flex; align-items: center; justify-content: space-between; height: 3.5rem;`}>
     <a
       href="/"
       style={`font-family: var(--font-mono); font-size: var(--text-label); letter-spacing: var(--tracking-wide); color: var(--color-cream); text-decoration: none; text-transform: uppercase;`}
@@ -17,7 +17,8 @@ const currentPath = Astro.url.pathname;
       HMNG SHRMA
     </a>
 
-    <div style="display: flex; align-items: center; gap: 2rem;">
+    <!-- Desktop nav links -->
+    <div class="nav-links" style="display: flex; align-items: center; gap: 2rem;">
       {navLinks.map(({ label, href }) => (
         <a
           href={href}
@@ -35,5 +36,69 @@ const currentPath = Astro.url.pathname;
         View Resume →
       </a>
     </div>
+
+    <!-- Hamburger button (mobile only) -->
+    <button
+      id="nav-toggle"
+      aria-label="Toggle menu"
+      aria-expanded="false"
+      class="nav-hamburger"
+      style="display: none; flex-direction: column; justify-content: center; align-items: center; gap: 5px; width: 2.5rem; height: 2.5rem; background: transparent; border: none; cursor: pointer; padding: 0.25rem;"
+    >
+      <span class="bar" style="display: block; width: 22px; height: 2px; background: var(--color-cream); border-radius: 2px; transition: transform 0.25s, opacity 0.25s;"></span>
+      <span class="bar" style="display: block; width: 22px; height: 2px; background: var(--color-cream); border-radius: 2px; transition: transform 0.25s, opacity 0.25s;"></span>
+      <span class="bar" style="display: block; width: 22px; height: 2px; background: var(--color-cream); border-radius: 2px; transition: transform 0.25s, opacity 0.25s;"></span>
+    </button>
   </nav>
+
+  <!-- Mobile menu dropdown -->
+  <div id="mobile-menu" class="mobile-menu" style="display: none; background-color: var(--color-ink); border-top: 1px solid var(--color-border-dark);">
+    <div style={`max-width: var(--max-w-page); margin: 0 auto; padding: 1.25rem var(--px-page) 1.5rem; display: flex; flex-direction: column; gap: 0.25rem;`}>
+      {navLinks.map(({ label, href }) => (
+        <a
+          href={href}
+          style={`font-family: var(--font-body); font-size: 1.0625rem; color: ${currentPath === href ? "var(--color-cream)" : "rgba(244,237,217,0.65)"}; text-decoration: none; padding: 0.625rem 0; border-bottom: 1px solid var(--color-border-dark); display: block;`}
+        >
+          {label}
+        </a>
+      ))}
+      <a
+        href="/resume.pdf"
+        target="_blank"
+        rel="noopener noreferrer"
+        style={`font-family: var(--font-body); font-size: var(--text-label); color: var(--color-ink); background: var(--color-cream); padding: 0.625rem 1.25rem; border-radius: 2rem; text-decoration: none; white-space: nowrap; display: inline-block; margin-top: 1rem; text-align: center;`}
+      >
+        View Resume →
+      </a>
+    </div>
+  </div>
 </header>
+
+<style>
+  @media (max-width: 639px) {
+    .nav-links { display: none !important; }
+    .nav-hamburger { display: flex !important; }
+    .nav-inner { padding: 0 1.25rem !important; }
+  }
+
+  #nav-toggle.open .bar:nth-child(1) {
+    transform: translateY(7px) rotate(45deg);
+  }
+  #nav-toggle.open .bar:nth-child(2) {
+    opacity: 0;
+  }
+  #nav-toggle.open .bar:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg);
+  }
+</style>
+
+<script>
+  const toggle = document.getElementById('nav-toggle');
+  const menu = document.getElementById('mobile-menu');
+
+  toggle?.addEventListener('click', () => {
+    const isOpen = toggle.classList.toggle('open');
+    toggle.setAttribute('aria-expanded', String(isOpen));
+    if (menu) menu.style.display = isOpen ? 'block' : 'none';
+  });
+</script>
