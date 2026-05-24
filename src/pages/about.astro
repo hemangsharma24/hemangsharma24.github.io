@@ -28,55 +28,97 @@ const certifications = [
 <Layout title="About" description="About Hemang Sharma — UI/UX Product Designer based in Jaipur, India.">
 
   <!-- Hero -->
-  <section style={`max-width: var(--max-w-page); margin: 0 auto; padding: var(--section-gap) var(--px-page) 4rem;`}>
-    <div class="about-hero-grid">
-      <div>
-        <p style={`font-family: var(--font-mono); font-size: var(--text-label); color: var(--color-muted); letter-spacing: var(--tracking-wide); text-transform: uppercase; margin: 0 0 2rem;`}>About</p>
-        <h1 style={`font-family: var(--font-display); font-size: clamp(2rem, 3.2vw, 4rem); letter-spacing: var(--tracking-tight); line-height: var(--leading-tight); margin: 0 0 2rem; color: var(--color-ink);`}>
-          Hello, I'm Hemang Sharma — UI UX Designer based in Jaipur. Most recently Founding Designer at OverseeAI.
-        </h1>
-        <p style={`font-family: var(--font-body); font-size: var(--text-body-lg); line-height: var(--leading-body); color: var(--color-muted); margin: 0 0 1.5rem;`}>
-          My role at OverseeAI revolved around shipping the product end-to-end, from first wireframes to launch. I worked alongside ML engineers and insurance domain experts to make complex AI workflows feel simple.
-        </p>
-        <p style={`font-family: var(--font-body); font-size: var(--text-body); line-height: var(--leading-body); color: var(--color-muted); margin: 0;`}>
-          Before that, I spent over two years at Divum Corporate Services working on enterprise B2B platforms and customer experience portals for clients including Bosch. I care about the intersection of decision-making and interface design.
-        </p>
-      </div>
+  <section class="hero-section" style="width: calc(100% - 80px); max-width: var(--max-w-page); margin: 40px auto var(--section-gap); border-left: 1px solid var(--color-border-hero); border-right: 1px solid var(--color-border-hero);">
+    <div class="hero-grid">
 
-      <div style="display: flex; justify-content: flex-end;">
-        <div
-          style={`
-            width: 100%; max-width: 22rem; aspect-ratio: 3/4;
-            border-radius: 0.75rem; background: var(--color-surface);
-            border: 1px solid var(--color-border);
-            display: flex; flex-direction: column;
-            align-items: center; justify-content: center;
-            overflow: hidden; position: relative;
-          `}
-        >
-          <svg width="100%" height="100%" viewBox="0 0 320 420" preserveAspectRatio="xMidYMid slice" style="position: absolute; inset: 0; opacity: 0.06;">
-            <defs>
-              <pattern id="dot-grid-about" width="20" height="20" patternUnits="userSpaceOnUse">
-                <circle cx="10" cy="10" r="1.5" fill="#1E0D0D"/>
-              </pattern>
-            </defs>
-            <rect width="100%" height="100%" fill="url(#dot-grid-about)"/>
+      <!-- Left: text content -->
+      <div class="hero-left" style="padding: 2.5rem; display: flex; flex-direction: column; border-right: 1px solid var(--color-border-hero); min-height: 28rem;">
+
+        <!-- Face icon -->
+        <div style="margin-bottom: 2.5rem;">
+          <svg width="48" height="48" viewBox="0 0 35 35" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M32.5703 13.7134H34.2803V20.5646H32.5703V13.7134Z" fill="#5A3429"/>
+            <path d="M10.2809 13.7137H11.9909V11.9924H13.7122V10.2824H20.5634V11.9924H22.2847V10.2824H27.4259V11.9924H29.1359V25.7062H30.8572V22.2862H32.5672V20.5649H30.8572V13.7137H32.5672V11.9924H30.8572V5.14117H29.1359V6.85117H27.4259V5.14117H23.9947V3.41992H11.9909V5.14117H10.2809V6.85117H8.57094V10.2824H6.84969V5.14117H5.13969V10.2824H3.42969V11.9924H10.2809V13.7137Z" fill="#5A3429"/>
+            <path d="M27.4297 25.7061H29.1397V27.4273H27.4297V25.7061Z" fill="#5A3429"/>
+            <path d="M27.4297 3.41992H29.1397V5.14117H27.4297V3.41992Z" fill="#5A3429"/>
+            <path d="M25.7031 22.2861H27.4244V23.9961H25.7031V22.2861Z" fill="#5A3429"/>
+            <path d="M25.7031 17.1338H27.4244V20.565H25.7031V17.1338Z" fill="#5A3429"/>
+            <path d="M25.7031 1.70996H27.4244V3.41996H25.7031V1.70996Z" fill="#5A3429"/>
+            <path d="M11.9919 27.4272V30.8641H8.57188V32.5741H5.14062V34.2841H32.5681V32.5741H29.1369V30.8641H25.7056V29.1429H27.4269V27.4329L11.9919 27.4272ZM23.9956 32.5685H17.1444V30.8641H13.7131V29.1429H24.0012L23.9956 32.5685Z" fill="#5A3429"/>
+            <path d="M20.5625 23.9961H25.7037V25.7061H20.5625V23.9961Z" fill="#5A3429"/>
+            <path d="M18.8555 22.2861H20.5655V23.9961H18.8555V22.2861Z" fill="#5A3429"/>
+            <path d="M17.1445 17.1338H18.8545V20.565H17.1445V17.1338Z" fill="#5A3429"/>
+            <path d="M17.1445 11.9924H20.5645V13.7137H17.1445V11.9924Z" fill="#5A3429"/>
+            <path d="M11.9922 13.7134H13.7134V20.5646H11.9922V13.7134Z" fill="#5A3429"/>
+            <path d="M10.2812 0H25.705V1.71H10.2812V0Z" fill="#5A3429"/>
+            <path d="M10.2812 25.7061H11.9913V27.4273H10.2812V25.7061Z" fill="#5A3429"/>
+            <path d="M10.2812 20.5652H11.9913V22.2864H10.2812V20.5652Z" fill="#5A3429"/>
+            <path d="M3.42969 22.2861V23.9961H8.57094V25.7061H10.2809V22.2861H3.42969Z" fill="#5A3429"/>
+            <path d="M8.57422 1.70996H10.2842V3.41996H8.57422V1.70996Z" fill="#5A3429"/>
+            <path d="M6.85156 3.41992H8.57281V5.14117H6.85156V3.41992Z" fill="#5A3429"/>
+            <path d="M5.14062 13.7134H6.85062V15.4234H5.14062V13.7134Z" fill="#5A3429"/>
+            <path d="M3.42969 15.4238H5.13969V18.8551H3.42969V15.4238Z" fill="#5A3429"/>
+            <path d="M1.71094 20.5652H3.43219V22.2864H1.71094V20.5652Z" fill="#5A3429"/>
+            <path d="M1.71094 11.9924H3.43219V13.7137H1.71094V11.9924Z" fill="#5A3429"/>
+            <path d="M0 13.7134H1.71V20.5646H0V13.7134Z" fill="#5A3429"/>
           </svg>
-          <div style="position: relative; text-align: center; padding: 2rem;">
-            <div style={`width: 4rem; height: 4rem; border-radius: 50%; background: var(--color-border); margin: 0 auto 1rem; display: flex; align-items: center; justify-content: center;`}>
-              <span style={`font-family: var(--font-display); font-size: 1.25rem; color: var(--color-ink); opacity: 0.35;`}>HS</span>
-            </div>
-            <p style={`font-family: var(--font-mono); font-size: var(--text-label); color: var(--color-muted); letter-spacing: var(--tracking-wide); text-transform: uppercase; margin: 0 0 0.25rem; opacity: 0.6;`}>Hemang Sharma</p>
-            <p style={`font-family: var(--font-mono); font-size: 0.75rem; color: var(--color-muted); letter-spacing: var(--tracking-wide); text-transform: uppercase; opacity: 0.4; margin: 0;`}>UI/UX Product Designer</p>
+        </div>
+
+        <!-- Main heading -->
+        <h1 style="font-family: var(--font-display); font-size: clamp(1.875rem, 2.6vw, 3rem); font-weight: 400; line-height: 1.28; letter-spacing: -0.01em; color: var(--color-primary); margin: 0 0 1.5rem;">
+          I'm Hemang Sharma ↠ a Product &amp; UI/UX Designer from Jaipur. Most recently Founding Designer at OverseeAI, shaping AI-powered tools for the insurance industry.
+        </h1>
+
+        <!-- Body text -->
+        <p style="font-family: var(--font-body); font-size: var(--text-body); line-height: var(--leading-body); color: var(--color-muted); margin: 0;">
+          My role at OverseeAI revolved around shipping the product end-to-end, from first wireframes to launch. I worked alongside ML engineers and insurance domain experts to make complex AI workflows feel simple for the non-technical people using them.
+        </p>
+
+        <!-- Push socials to bottom -->
+        <div style="flex: 1; min-height: 2rem;"></div>
+
+        <!-- Bottom row: social icons + email -->
+        <div class="hero-socials-row" style="display: flex; align-items: center; justify-content: space-between;">
+          <div style="display: flex; gap: 0.5rem;">
+            <a href="https://www.linkedin.com/in/hemangsharma24/" target="_blank" rel="noopener noreferrer"
+              style="display: flex; align-items: center; justify-content: center; width: 40px; height: 40px; background: var(--color-ink); border-radius: 7px; text-decoration: none; flex-shrink: 0;">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg">
+                <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+              </svg>
+            </a>
+            <a href="https://www.behance.net/hemangsharma24" target="_blank" rel="noopener noreferrer"
+              style="display: flex; align-items: center; justify-content: center; width: 40px; height: 40px; background: var(--color-ink); border-radius: 7px; text-decoration: none; flex-shrink: 0;">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg">
+                <path d="M22 7h-7V5h7v2zm1.726 10c-.442 1.297-2.029 3-5.101 3-3.074 0-5.564-1.729-5.564-5.675 0-3.91 2.325-5.92 5.466-5.92 3.082 0 4.964 1.782 5.375 4.426.078.506.109 1.188.095 2.14h-8.972c.13 1.202.715 1.91 1.95 1.91.975 0 1.65-.454 1.965-1.351l2.841.47zm-5.428-4.569c-.019-.668-.499-1.698-1.756-1.698-1.176 0-1.794.856-1.857 1.698h3.613zm-15.297 5.241c.647 0 1.189-.154 1.62-.464.428-.313.639-.765.639-1.362 0-.604-.211-1.064-.634-1.387-.419-.32-.938-.483-1.554-.483H2.5v3.696h1.501zm.216-5.34c.576 0 1.05-.135 1.426-.405.376-.272.563-.695.563-1.27 0-.52-.175-.908-.526-1.166-.349-.257-.808-.387-1.382-.387H2.5v3.228h1.717zM0 5v14h5.893c1.305 0 2.37-.321 3.198-.965.829-.641 1.245-1.573 1.245-2.79 0-.605-.16-1.156-.48-1.655-.32-.497-.763-.85-1.33-1.063.713-.178 1.279-.541 1.698-1.094.42-.549.63-1.22.63-2.006 0-1.296-.453-2.28-1.36-2.957C8.591 5.799 7.429 5 6.008 5H0z"/>
+              </svg>
+            </a>
           </div>
+          <a href="mailto:kshamahemang@gmail.com" class="hero-email-link"
+            style="display: flex; align-items: center; gap: 0.5rem; font-family: var(--font-body); font-size: var(--text-body); color: var(--color-ink); text-decoration: none;">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="2" y="4" width="20" height="16" rx="2"/>
+              <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
+            </svg>
+            kshamahemang@gmail.com
+          </a>
         </div>
       </div>
+
+      <!-- Right: ID card image -->
+      <div class="hero-right" style="padding: 2.5rem; display: flex; align-items: center; justify-content: center;">
+        <img
+          src="/home_page_assets/Hero Section/ID-card.png"
+          alt="Hemang Sharma ID Card"
+          style="max-width: 100%; max-height: 100%; object-fit: contain; display: block;"
+        />
+      </div>
+
     </div>
   </section>
 
   <!-- Work Experience -->
   <section style={`max-width: var(--max-w-page); margin: 0 auto; padding: 0 var(--px-page) var(--section-gap); border-top: 1px solid var(--color-border); padding-top: var(--section-gap);`}>
-    <h2 style={`font-family: var(--font-display); font-size: var(--text-h2); letter-spacing: var(--tracking-tight); text-transform: uppercase; margin: 0 0 2.5rem; color: var(--color-ink);`}>Work Experience</h2>
+    <h2 style={`font-family: var(--font-display); font-size: var(--text-h2); letter-spacing: var(--tracking-tight); text-transform: uppercase; margin: 0 0 2.5rem; color: var(--color-primary);`}>Work Experience</h2>
     <div style={`border-top: 1px solid var(--color-border);`}>
       {experience.map((exp) => (
         <ExperienceRow role={exp.role} company={exp.company} period={exp.period} location={exp.location} type={exp.type} />
@@ -86,7 +128,7 @@ const certifications = [
 
   <!-- Education -->
   <section style={`max-width: var(--max-w-page); margin: 0 auto; padding: 0 var(--px-page) var(--section-gap); border-top: 1px solid var(--color-border); padding-top: var(--section-gap);`}>
-    <h2 style={`font-family: var(--font-display); font-size: var(--text-h2); letter-spacing: var(--tracking-tight); text-transform: uppercase; margin: 0 0 2.5rem; color: var(--color-ink);`}>Education</h2>
+    <h2 style={`font-family: var(--font-display); font-size: var(--text-h2); letter-spacing: var(--tracking-tight); text-transform: uppercase; margin: 0 0 2.5rem; color: var(--color-primary);`}>Education</h2>
     <div style={`border-top: 1px solid var(--color-border);`}>
       {education.map(({ credential, institution, period }) => (
         <div class="edu-cert-row">
@@ -102,7 +144,7 @@ const certifications = [
 
   <!-- Certifications -->
   <section style={`max-width: var(--max-w-page); margin: 0 auto; padding: 0 var(--px-page) var(--section-gap);`}>
-    <h2 style={`font-family: var(--font-display); font-size: var(--text-h2); letter-spacing: var(--tracking-tight); text-transform: uppercase; margin: 0 0 2.5rem; color: var(--color-ink);`}>Certifications</h2>
+    <h2 style={`font-family: var(--font-display); font-size: var(--text-h2); letter-spacing: var(--tracking-tight); text-transform: uppercase; margin: 0 0 2.5rem; color: var(--color-primary);`}>Certifications</h2>
     <div style={`border-top: 1px solid var(--color-border);`}>
       {certifications.map(({ credential, institution }) => (
         <div class="edu-cert-row">
@@ -115,13 +157,13 @@ const certifications = [
 
   <!-- Testimonials -->
   <section style={`max-width: var(--max-w-page); margin: 0 auto; padding: 0 var(--px-page) var(--section-gap); border-top: 1px solid var(--color-border); padding-top: var(--section-gap);`}>
-    <h2 style={`font-family: var(--font-display); font-size: var(--text-h2); letter-spacing: var(--tracking-tight); text-transform: uppercase; margin: 0 0 2.5rem; color: var(--color-ink);`}>Testimonials</h2>
+    <h2 style={`font-family: var(--font-display); font-size: var(--text-h2); letter-spacing: var(--tracking-tight); text-transform: uppercase; margin: 0 0 2.5rem; color: var(--color-primary);`}>Testimonials</h2>
     <TestimonialGrid {testimonials} />
   </section>
 
   <!-- Off the Clock -->
   <section style={`max-width: var(--max-w-page); margin: 0 auto; padding: 0 var(--px-page) var(--section-gap); border-top: 1px solid var(--color-border); padding-top: var(--section-gap);`}>
-    <h2 style={`font-family: var(--font-display); font-size: var(--text-h2); letter-spacing: var(--tracking-tight); text-transform: uppercase; margin: 0 0 2.5rem; color: var(--color-ink);`}>Off the Clock</h2>
+    <h2 style={`font-family: var(--font-display); font-size: var(--text-h2); letter-spacing: var(--tracking-tight); text-transform: uppercase; margin: 0 0 2.5rem; color: var(--color-primary);`}>Off the Clock</h2>
     <p style={`font-family: var(--font-body); font-size: var(--text-body-lg); line-height: var(--leading-body); color: var(--color-muted); margin: 0 0 1.5rem;`}>
       Off the grid, I'm a music explorer who enjoys Linkin Park, Radiohead and Jagjit Singh, a Football fanatic, and a Movie buff with a very long watchlist. I also enjoy writing philosophical thoughts, short poems, and reflections inspired by everyday life.
     </p>
@@ -137,11 +179,26 @@ const certifications = [
 </Layout>
 
 <style>
-  .about-hero-grid {
+  /* Hero — mirrors home page hero */
+  .hero-section {
+    position: relative;
+  }
+  .hero-section::before,
+  .hero-section::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100vw;
+    height: 1px;
+    background: var(--color-border-hero);
+  }
+  .hero-section::before { top: 0; }
+  .hero-section::after  { bottom: 0; }
+
+  .hero-grid {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 4rem;
-    align-items: start;
+    grid-template-columns: 1fr 26rem;
   }
 
   .edu-cert-row {
@@ -153,16 +210,45 @@ const certifications = [
     border-bottom: 1px solid var(--color-border);
   }
 
+  /* ── Tablet (640–1023px) ── */
   @media (min-width: 640px) and (max-width: 1023px) {
-    .about-hero-grid {
-      gap: 2.5rem;
+    .hero-grid {
+      grid-template-columns: 1fr 22rem;
     }
   }
 
+  /* ── Mobile (< 640px) ── */
   @media (max-width: 639px) {
-    .about-hero-grid {
+    .hero-section::before,
+    .hero-section::after {
+      width: 100%;
+    }
+    .hero-section {
+      width: calc(100% - 40px) !important;
+      margin-bottom: 3rem !important;
+    }
+    .hero-grid {
       grid-template-columns: 1fr;
-      gap: 2rem;
+    }
+    .hero-left {
+      border-right: none !important;
+      border-bottom: 1px solid var(--color-border-hero);
+      padding: 1.75rem !important;
+      min-height: unset !important;
+    }
+    .hero-right {
+      padding: 1.75rem !important;
+    }
+    .hero-socials-row {
+      flex-wrap: wrap;
+      gap: 0.75rem;
+    }
+    .hero-email-link {
+      min-width: 0;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      flex-shrink: 1;
     }
 
     .edu-cert-row {
