@@ -157,7 +157,7 @@ const companies = [
   </section>
 
   <!-- Work Experience -->
-  <section class="page-section" style={`max-width: var(--max-w-page); margin: 0 auto; padding: 0 var(--px-page) var(--section-gap); border-top: 1px solid var(--color-border); padding-top: var(--section-gap);`}>
+  <section class="page-section" style={`max-width: var(--max-w-page); margin: 0 auto; padding: 0 var(--px-page) var(--section-gap); border-top: 1px solid var(--color-border); padding-top: 3rem;`}>
     <h2 class="section-h2" style={`font-family: var(--font-display); font-size: clamp(1.75rem, 4vw, var(--text-h2)); letter-spacing: var(--tracking-tight); text-transform: uppercase; margin: 0 0 2.5rem; color: var(--color-primary);`}>
       Work Experience
     </h2>
@@ -201,11 +201,13 @@ const companies = [
     <div class="frame-divider"></div>
 
     <!-- Testimonials — full width within the frame -->
-    <div style="padding: 4rem 1rem var(--section-gap);">
-      <h2 class="section-h2" style={`font-family: var(--font-display); font-size: clamp(1.75rem, 4vw, var(--text-h2)); letter-spacing: var(--tracking-tight); text-transform: uppercase; margin: 0 0 2.5rem; color: var(--color-primary);`}>
-        Testimonials
-      </h2>
-      <TestimonialGrid {testimonials} />
+    <div class="testimonials-outer">
+      <div class="testimonials-box">
+        <h2 class="section-h2" style={`font-family: var(--font-display); font-size: clamp(1.75rem, 4vw, var(--text-h2)); letter-spacing: var(--tracking-tight); text-transform: uppercase; margin: 0 0 2.5rem; color: var(--color-primary);`}>
+          Testimonials
+        </h2>
+        <TestimonialGrid {testimonials} />
+      </div>
     </div>
   </div>
 
@@ -304,6 +306,28 @@ const companies = [
   .col-guide-2 { left: 40%; }
   .col-guide-4 { left: 80%; }
 
+  /* Testimonials bordered section */
+  .testimonials-outer {
+    position: relative;
+    padding: 3.5rem 4rem 4rem;
+  }
+  /* Two vertical connectors: align with 1st/5th column boundaries of the brand grid */
+  .testimonials-outer::before,
+  .testimonials-outer::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    width: 1px;
+    height: 3.5rem;
+    background: var(--color-border-hero);
+  }
+  .testimonials-outer::before { left: 20%; }
+  .testimonials-outer::after  { right: 20%; }
+  .testimonials-box {
+    border: 1px solid var(--color-border-hero);
+    padding: 2.5rem;
+  }
+
   /* Hero */
   .hero-section {
     position: relative;
@@ -377,8 +401,29 @@ const companies = [
     margin: calc(48px + 2.5rem) 0 1rem;
   }
 
+  /* ── Tablet (640–1023px) testimonials ── */
+  @media (min-width: 640px) and (max-width: 1023px) {
+    .testimonials-outer {
+      padding: 3rem 2.5rem 3.5rem;
+    }
+    .testimonials-outer::before { left: 25%; }
+    .testimonials-outer::after  { right: 25%; }
+    .testimonials-outer::before,
+    .testimonials-outer::after  { height: 3rem; }
+  }
+
   /* ── Mobile (< 640px) ── */
   @media (max-width: 639px) {
+    .testimonials-outer {
+      padding: 2.5rem 1.25rem 3rem;
+    }
+    .testimonials-outer::before { left: 1.25rem; }
+    .testimonials-outer::after  { right: 1.25rem; }
+    .testimonials-outer::before,
+    .testimonials-outer::after  { height: 2.5rem; }
+    .testimonials-box {
+      padding: 1.5rem;
+    }
     .brands-testimonials-frame::before,
     .brands-testimonials-frame::after {
       width: 100%;

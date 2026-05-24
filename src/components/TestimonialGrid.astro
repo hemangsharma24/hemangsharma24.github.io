@@ -27,7 +27,7 @@ const avatarColors = [
   {testimonials.map(({ name, nameNote, role, initials, avatar, quote }, i) => {
     const colors = avatarColors[i % avatarColors.length];
     return (
-      <div style={`background: var(--color-cream); border-right: 1px solid var(--color-border-hero); border-bottom: 1px solid var(--color-border-hero); border-radius: 0; padding: 1.75rem; display: flex; flex-direction: column; gap: 1.25rem;`}>
+      <div style={`background: var(--color-cream); border: 1px solid var(--color-border); border-radius: 0; padding: 1.75rem; display: flex; flex-direction: column; gap: 1.25rem;`}>
         <!-- Header: avatar + name -->
         <div style="display: flex; align-items: center; gap: 0.875rem;">
           {avatar ? (
@@ -78,9 +78,7 @@ const avatarColors = [
   .testimonial-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 0;
-    border-left: 1px solid var(--color-border-hero);
-    border-top: 1px solid var(--color-border-hero);
+    gap: 1rem;
   }
 
   @media (max-width: 639px) {
