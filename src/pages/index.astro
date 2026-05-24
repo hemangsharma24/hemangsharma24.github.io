@@ -14,7 +14,6 @@ const companies = [
   { name: "BOSCH", logo: "/home_page_assets/Work experience and Companies logo/bosch-logo-simple 1.svg" },
   { name: "Aditya Birla Group", logo: "/home_page_assets/Work experience and Companies logo/Aditya birla group.svg" },
   { name: "Coal India", logo: "/home_page_assets/Work experience and Companies logo/coal-india-limited-cil-seeklogo 1.svg" },
-  { name: "NIT Jaipur" },
   { name: "isansys", logo: "/home_page_assets/Work experience and Companies logo/Isansys_Logo_RGB.svg" },
   { name: "Gintaa", logo: "/home_page_assets/Work experience and Companies logo/Gintaa_idbephvRXo_1 2.svg" },
   { name: "{param}", logo: "/home_page_assets/Work experience and Companies logo/⦃param⦄.svg" },
@@ -191,12 +190,14 @@ const companies = [
   </section>
 
   <!-- Testimonials -->
-  <section class="page-section" style={`max-width: var(--max-w-page); margin: 0 auto; padding: 0 var(--px-page) var(--section-gap); border-top: 1px solid var(--color-border); padding-top: var(--section-gap);`}>
-    <h2 class="section-h2" style={`font-family: var(--font-display); font-size: clamp(1.75rem, 4vw, var(--text-h2)); letter-spacing: var(--tracking-tight); text-transform: uppercase; margin: 0 0 2.5rem; color: var(--color-primary);`}>
-      Testimonials
-    </h2>
-    <TestimonialGrid {testimonials} />
-  </section>
+  <div class="testimonial-outer">
+    <section class="page-section" style={`padding: var(--section-gap) var(--px-page);`}>
+      <h2 class="section-h2" style={`font-family: var(--font-display); font-size: clamp(1.75rem, 4vw, var(--text-h2)); letter-spacing: var(--tracking-tight); text-transform: uppercase; margin: 0 0 2.5rem; color: var(--color-primary);`}>
+        Testimonials
+      </h2>
+      <TestimonialGrid {testimonials} />
+    </section>
+  </div>
 
   <!-- Personal bio section -->
   <div style="background: #FFEFF4; border-top: 1px solid var(--color-border);">
@@ -233,6 +234,28 @@ const companies = [
 </Layout>
 
 <style>
+  /* Testimonials outer border (mirrors hero section frame) */
+  .testimonial-outer {
+    position: relative;
+    width: calc(100% - 80px);
+    max-width: var(--max-w-page);
+    margin: 0 auto var(--section-gap);
+    border-left: 1px solid var(--color-border-hero);
+    border-right: 1px solid var(--color-border-hero);
+  }
+  .testimonial-outer::before,
+  .testimonial-outer::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100vw;
+    height: 1px;
+    background: var(--color-border-hero);
+  }
+  .testimonial-outer::before { top: 0; }
+  .testimonial-outer::after  { bottom: 0; }
+
   /* Hero */
   .hero-section {
     position: relative;
@@ -297,6 +320,14 @@ const companies = [
 
   /* ── Mobile (< 640px) ── */
   @media (max-width: 639px) {
+    .testimonial-outer {
+      width: calc(100% - 40px);
+    }
+    .testimonial-outer::before,
+    .testimonial-outer::after {
+      width: 100%;
+    }
+
     .hero-section::before,
     .hero-section::after {
       width: 100%;
