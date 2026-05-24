@@ -173,25 +173,27 @@ const companies = [
   </section>
 
   <!-- Company logo grid -->
-  <section class="page-section" style={`max-width: var(--max-w-page); margin: 0 auto; padding: 0 var(--px-page) var(--section-gap);`}>
-    <p style={`font-family: var(--font-display); font-size: clamp(1.25rem, 3vw, 2.5rem); letter-spacing: var(--tracking-tight); text-align: center; margin: 0 0 3rem; color: var(--color-primary);`}>
-      I Worked, Contributed, and Learned a lot from all of them.
-    </p>
-    <div class="logo-grid">
-      {companies.map(({ name, logo }) => (
-        <div style={`border-right: 1px solid var(--color-border); border-bottom: 1px solid var(--color-border); padding: 2rem 1.5rem; display: flex; align-items: center; justify-content: center; min-height: 5rem;`}>
-          {logo
-            ? <img src={logo} alt={name} style="max-height: 2rem; max-width: 7.5rem; width: 100%; object-fit: contain;" />
-            : <span style={`font-family: var(--font-body); font-size: var(--text-body); color: var(--color-ink); opacity: 0.65; text-align: center; font-weight: 500;`}>{name}</span>
-          }
-        </div>
-      ))}
-    </div>
-  </section>
+  <div class="brands-outer">
+    <section class="page-section" style="padding: 1rem 1rem var(--section-gap);">
+      <p style={`font-family: var(--font-display); font-size: clamp(1.25rem, 3vw, 2.5rem); letter-spacing: var(--tracking-tight); text-align: center; margin: 0 0 3rem; color: var(--color-primary);`}>
+        I Worked, Contributed, and Learned a lot from all of them.
+      </p>
+      <div class="logo-grid">
+        {companies.map(({ name, logo }) => (
+          <div style={`border-right: 1px solid var(--color-border); border-bottom: 1px solid var(--color-border); padding: 2rem 1.5rem; display: flex; align-items: center; justify-content: center; min-height: 5rem;`}>
+            {logo
+              ? <img src={logo} alt={name} style="max-height: 2rem; max-width: 7.5rem; width: 100%; object-fit: contain;" />
+              : <span style={`font-family: var(--font-body); font-size: var(--text-body); color: var(--color-ink); opacity: 0.65; text-align: center; font-weight: 500;`}>{name}</span>
+            }
+          </div>
+        ))}
+      </div>
+    </section>
+  </div>
 
   <!-- Testimonials -->
   <div class="testimonial-outer">
-    <section class="page-section" style={`padding: var(--section-gap) var(--px-page);`}>
+    <section class="page-section" style={`padding: 1rem 1rem var(--section-gap);`}>
       <h2 class="section-h2" style={`font-family: var(--font-display); font-size: clamp(1.75rem, 4vw, var(--text-h2)); letter-spacing: var(--tracking-tight); text-transform: uppercase; margin: 0 0 2.5rem; color: var(--color-primary);`}>
         Testimonials
       </h2>
@@ -234,8 +236,16 @@ const companies = [
 </Layout>
 
 <style>
-  /* Testimonials outer border (mirrors hero section frame) */
+  /* Testimonials outer border — contained, no full-width bleed */
   .testimonial-outer {
+    width: calc(100% - 80px);
+    max-width: var(--max-w-page);
+    margin: 0 auto var(--section-gap);
+    border: 1px solid var(--color-border-hero);
+  }
+
+  /* Brands outer border — full-width bleed (mirrors hero section frame) */
+  .brands-outer {
     position: relative;
     width: calc(100% - 80px);
     max-width: var(--max-w-page);
@@ -243,8 +253,8 @@ const companies = [
     border-left: 1px solid var(--color-border-hero);
     border-right: 1px solid var(--color-border-hero);
   }
-  .testimonial-outer::before,
-  .testimonial-outer::after {
+  .brands-outer::before,
+  .brands-outer::after {
     content: '';
     position: absolute;
     left: 50%;
@@ -253,8 +263,8 @@ const companies = [
     height: 1px;
     background: var(--color-border-hero);
   }
-  .testimonial-outer::before { top: 0; }
-  .testimonial-outer::after  { bottom: 0; }
+  .brands-outer::before { top: 0; }
+  .brands-outer::after  { bottom: 0; }
 
   /* Hero */
   .hero-section {
@@ -323,8 +333,12 @@ const companies = [
     .testimonial-outer {
       width: calc(100% - 40px);
     }
-    .testimonial-outer::before,
-    .testimonial-outer::after {
+
+    .brands-outer {
+      width: calc(100% - 40px);
+    }
+    .brands-outer::before,
+    .brands-outer::after {
       width: 100%;
     }
 
