@@ -15,24 +15,33 @@ const { entry } = Astro.props;
 const { Content } = await render(entry);
 
 const bgMap: Record<string, string> = {
-  gintaa: "var(--color-gintaa)",
-  fnol:   "var(--color-fnol)",
-  bosch:  "var(--color-bosch)",
-  bolna:  "var(--color-bolna)",
+  gintaa: "#D4BF96",
+  fnol:   "#4A2880",
+  bosch:  "#5C1A1A",
+  bolna:  "#192B1A",
 };
 
 const fgMap: Record<string, string> = {
-  gintaa: "var(--color-ink)",
-  fnol:   "var(--color-cream)",
-  bosch:  "var(--color-ink)",
-  bolna:  "var(--color-cream)",
+  gintaa: "#1E0D0D",
+  fnol:   "#F9F5F0",
+  bosch:  "#F9F5F0",
+  bolna:  "#F9F5F0",
+};
+
+const imageMap: Record<string, string> = {
+  gintaa: "/gintaa-project.png",
+  fnol:   "/fnol-project.png",
+  bosch:  "/bosch-project.png",
+  bolna:  "/bolna-project.png",
 };
 
 const heroBg = bgMap[entry.data.theme];
 const heroFg = fgMap[entry.data.theme];
-const borderColor = heroFg === "var(--color-ink)"
+const img = imageMap[entry.data.theme];
+
+const borderColor = heroFg === "#1E0D0D"
   ? "rgba(30,13,13,0.18)"
-  : "rgba(255,255,255,0.18)";
+  : "rgba(249,245,240,0.15)";
 
 const allProjects = (await getCollection("projects")).sort((a, b) => a.data.order - b.data.order);
 const currentIndex = allProjects.findIndex((p) => p.data.slug === entry.data.slug);
@@ -48,91 +57,67 @@ const next = currentIndex < allProjects.length - 1 ? allProjects[currentIndex + 
 
       <!-- Breadcrumb -->
       <nav style="margin-bottom: 2rem;">
-        <a
-          href="/projects"
-          style={`font-family: var(--font-mono); font-size: var(--text-label); color: ${heroFg}; opacity: 0.6; text-decoration: none; letter-spacing: var(--tracking-wide);`}
-        >
+        <a href="/projects"
+          style={`font-family: var(--font-mono); font-size: var(--text-label); color: ${heroFg}; opacity: 0.6; text-decoration: none; letter-spacing: var(--tracking-wide);`}>
           ← Projects
         </a>
         {entry.data.category && (
-          <span style={`font-family: var(--font-mono); font-size: var(--text-label); opacity: 0.4; margin: 0 0.5rem;`}>/</span>
-          <span style={`font-family: var(--font-mono); font-size: var(--text-label); opacity: 0.55; letter-spacing: var(--tracking-wide);`}>{entry.data.category}</span>
+          <>
+            <span style={`font-family: var(--font-mono); font-size: var(--text-label); opacity: 0.35; margin: 0 0.5rem;`}>/</span>
+            <span style={`font-family: var(--font-mono); font-size: var(--text-label); opacity: 0.5; letter-spacing: var(--tracking-wide);`}>{entry.data.category}</span>
+          </>
         )}
       </nav>
 
       <!-- Tags -->
-      <TagRow number={entry.data.number} tags={entry.data.type} />
+      <div style={`font-family: var(--font-mono); font-size: var(--text-label); color: ${heroFg}; display: flex; align-items: center; gap: 0.5rem; letter-spacing: var(--tracking-wide); text-transform: uppercase; opacity: 0.65; margin-bottom: 1.5rem;`}>
+        <span>{entry.data.number}</span>
+        {entry.data.type.map((tag, i) => (
+          <>
+            <span style="opacity: 0.5;">·</span>
+            <span>{tag}</span>
+          </>
+        ))}
+      </div>
 
       <!-- Tagline heading -->
-      <h1
-        style={`font-family: var(--font-display); font-size: clamp(1.75rem, 4vw, var(--text-h1)); letter-spacing: var(--tracking-tight); line-height: var(--leading-tight); margin: 1.5rem 0 2.5rem; max-width: 22ch;`}
-      >
+      <h1 style={`font-family: var(--font-display); font-size: clamp(1.75rem, 4vw, 4rem); letter-spacing: var(--tracking-tight); line-height: var(--leading-tight); margin: 0 0 2.5rem; max-width: 22ch;`}>
         {entry.data.tagline}
       </h1>
 
       <!-- Stats bar -->
       {entry.data.stats && entry.data.stats.length > 0 && (
-        <div
-          style={`
-            display: grid;
-            grid-template-columns: repeat(${entry.data.stats.length}, 1fr);
-            gap: 0;
-            border-top: 1px solid ${borderColor};
-            border-bottom: 1px solid ${borderColor};
-            margin-bottom: 0;
-          `}
-        >
+        <div style={`display: grid; grid-template-columns: repeat(${entry.data.stats.length}, 1fr); border-top: 1px solid ${borderColor}; border-bottom: 1px solid ${borderColor};`}>
           {entry.data.stats.map(({ label, value }, i) => (
-            <div
-              style={`
-                padding: 1.25rem 0;
-                ${i > 0 ? `border-left: 1px solid ${borderColor}; padding-left: 1.5rem;` : ""}
-              `}
-            >
-              <p style={`font-family: var(--font-mono); font-size: 0.75rem; letter-spacing: var(--tracking-wide); text-transform: uppercase; opacity: 0.55; margin: 0 0 0.35rem;`}>
-                {label}
-              </p>
-              <p style={`font-family: var(--font-body); font-size: var(--text-body); margin: 0; font-weight: 500;`}>
-                {value}
-              </p>
+            <div style={`padding: 1.25rem ${i > 0 ? "1.5rem" : "0"}; ${i > 0 ? `border-left: 1px solid ${borderColor};` : ""}`}>
+              <p style={`font-family: var(--font-mono); font-size: 0.75rem; letter-spacing: var(--tracking-wide); text-transform: uppercase; opacity: 0.5; margin: 0 0 0.35rem;`}>{label}</p>
+              <p style={`font-family: var(--font-body); font-size: var(--text-body); margin: 0; font-weight: 500;`}>{value}</p>
             </div>
           ))}
         </div>
       )}
     </div>
 
-    <!-- Hero visual area -->
-    <div
-      style={`
-        max-width: var(--max-w-page);
-        margin: 0 auto;
-        padding: 2.5rem var(--px-page);
-        display: flex;
-        justify-content: center;
-      `}
-    >
-      <div
-        style={`
-          width: 100%;
-          max-width: 56rem;
-          height: 20rem;
-          border-radius: 0.75rem;
-          background: ${heroFg === "var(--color-ink)" ? "rgba(30,13,13,0.12)" : "rgba(255,255,255,0.06)"};
-          border: 1px solid ${borderColor};
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          overflow: hidden;
-        `}
-      >
-        <p style={`font-family: var(--font-mono); font-size: var(--text-label); opacity: 0.35; letter-spacing: var(--tracking-wide); text-transform: uppercase;`}>
-          {entry.data.title}
-        </p>
+    <!-- Hero image -->
+    <div style={`max-width: var(--max-w-page); margin: 0 auto; padding: 2rem var(--px-page) 0;`}>
+      <div style={`
+        width: 100%;
+        height: 22rem;
+        border-radius: 0.75rem 0.75rem 0 0;
+        overflow: hidden;
+        border: 1px solid ${borderColor};
+        border-bottom: none;
+      `}>
+        <img
+          src={img}
+          alt={entry.data.title}
+          style="width: 100%; height: 100%; object-fit: cover; object-position: center 22%;"
+        />
       </div>
     </div>
   </div>
 
-  <!-- Case study body -->
+  <!-- Case study body (light bg) -->
   <article
     style={`max-width: 72ch; margin: 0 auto; padding: var(--section-gap) var(--px-content);`}
     class="prose"
@@ -140,24 +125,20 @@ const next = currentIndex < allProjects.length - 1 ? allProjects[currentIndex + 
     <Content />
   </article>
 
-  <!-- Prev / Next navigation -->
-  <nav style={`max-width: var(--max-w-page); margin: 0 auto; padding: 0 var(--px-page) var(--section-gap); display: flex; justify-content: space-between; border-top: 1px solid var(--color-border-dark); padding-top: 2.5rem;`}>
+  <!-- Prev / Next -->
+  <nav style={`max-width: var(--max-w-page); margin: 0 auto; padding: 0 var(--px-page) var(--section-gap); display: flex; justify-content: space-between; border-top: 1px solid var(--color-border); padding-top: 2.5rem;`}>
     <div>
       {prev && (
-        <a
-          href={`/projects/${prev.data.slug}`}
-          style={`font-family: var(--font-body); font-size: var(--text-body); color: var(--color-cream); text-decoration: none;`}
-        >
+        <a href={`/projects/${prev.data.slug}`}
+          style={`font-family: var(--font-body); font-size: var(--text-body); color: var(--color-ink); text-decoration: none;`}>
           ← {prev.data.title}
         </a>
       )}
     </div>
     <div>
       {next && (
-        <a
-          href={`/projects/${next.data.slug}`}
-          style={`font-family: var(--font-body); font-size: var(--text-body); color: var(--color-cream); text-decoration: none;`}
-        >
+        <a href={`/projects/${next.data.slug}`}
+          style={`font-family: var(--font-body); font-size: var(--text-body); color: var(--color-ink); text-decoration: none;`}>
           {next.data.title} →
         </a>
       )}
@@ -173,17 +154,15 @@ const next = currentIndex < allProjects.length - 1 ? allProjects[currentIndex + 
     letter-spacing: var(--tracking-tight);
     text-transform: uppercase;
     margin: 3.5rem 0 1rem;
-    color: var(--color-cream);
+    color: var(--color-ink);
   }
-
   .prose :global(h3) {
     font-family: var(--font-display);
     font-size: var(--text-body-lg);
     letter-spacing: var(--tracking-tight);
     margin: 2rem 0 0.75rem;
-    color: var(--color-cream);
+    color: var(--color-ink);
   }
-
   .prose :global(p) {
     font-family: var(--font-body);
     font-size: var(--text-body);
@@ -191,15 +170,12 @@ const next = currentIndex < allProjects.length - 1 ? allProjects[currentIndex + 
     color: var(--color-muted);
     margin: 0 0 1.25rem;
   }
-
   .prose :global(hr) {
     border: none;
-    border-top: 1px solid var(--color-border-dark);
+    border-top: 1px solid var(--color-border);
     margin: 3rem 0;
   }
-
-  .prose :global(ul),
-  .prose :global(ol) {
+  .prose :global(ul), .prose :global(ol) {
     font-family: var(--font-body);
     font-size: var(--text-body);
     line-height: var(--leading-body);
@@ -207,29 +183,14 @@ const next = currentIndex < allProjects.length - 1 ? allProjects[currentIndex + 
     padding-left: 1.5rem;
     margin: 0 0 1.25rem;
   }
-
-  .prose :global(li) {
-    margin-bottom: 0.5rem;
-  }
-
-  .prose :global(strong) {
-    color: var(--color-cream);
-    font-weight: 600;
-  }
-
+  .prose :global(li) { margin-bottom: 0.5rem; }
+  .prose :global(strong) { color: var(--color-ink); font-weight: 600; }
   .prose :global(blockquote) {
-    border-left: 2px solid var(--color-border-dark);
+    border-left: 2px solid var(--color-border);
     padding-left: 1.5rem;
     margin: 2rem 0;
     font-style: italic;
   }
-
-  .prose :global(blockquote p) {
-    color: var(--color-cream);
-    opacity: 0.85;
-  }
-
-  .prose :global(ol) {
-    list-style-type: decimal;
-  }
+  .prose :global(blockquote p) { color: var(--color-ink); opacity: 0.85; }
+  .prose :global(ol) { list-style-type: decimal; }
 </style>

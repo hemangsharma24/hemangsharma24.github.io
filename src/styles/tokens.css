@@ -11,19 +11,23 @@
 
   /* Base palette */
   --color-ink:    #1E0D0D;
-  --color-cream:  #F4EDD9;
+  --color-cream:  #F9F5F0;
   --color-muted:  #7A6363;
+  --color-accent: #3D0D0D;
 
   /* Project card backgrounds */
   --color-gintaa: #D4BF96;
   --color-fnol:   #4A2880;
-  --color-bosch:  #E8967A;
+  --color-bosch:  #5C1A1A;
   --color-bolna:  #192B1A;
 
-  /* UI surfaces */
-  --color-border-dark:  rgba(255 255 255 / 0.08);
-  --color-border-light: rgba(30 13 13 / 0.12);
-  --color-surface:      rgba(255 255 255 / 0.04);
+  /* Borders */
+  --color-border:      rgba(30 13 13 / 0.12);
+  --color-border-dark: rgba(255 255 255 / 0.1);
+
+  /* Surfaces */
+  --color-surface:       rgba(30 13 13 / 0.04);
+  --color-surface-dark:  rgba(255 255 255 / 0.05);
 
   /* Type scale */
   --text-label:   0.9375rem;
@@ -54,8 +58,8 @@
   }
 
   body {
-    background-color: var(--color-ink);
-    color: var(--color-cream);
+    background-color: var(--color-cream);
+    color: var(--color-ink);
     line-height: var(--leading-body);
   }
 

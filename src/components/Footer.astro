@@ -2,32 +2,92 @@
 import LogoMark from "./LogoMark.tsx";
 ---
 
-<footer style={`border-top: 1px solid var(--color-border-dark); margin-top: var(--section-gap);`}>
-  <div
-    style={`max-width: var(--max-w-page); margin: 0 auto; padding: var(--px-content) var(--px-page); display: grid; grid-template-columns: 1fr auto; gap: 3rem; align-items: end;`}
-  >
-    <div>
-      <p style={`font-family: var(--font-display); font-size: var(--text-h3); letter-spacing: var(--tracking-tight); margin: 0 0 1rem;`}>
-        Let's build something worth using.
-      </p>
-      <a
-        href="mailto:kshamahemang@gmail.com"
-        style={`font-family: var(--font-body); font-size: var(--text-body); color: var(--color-muted); text-decoration: none;`}
-      >
-        kshamahemang@gmail.com
-      </a>
+<footer style="background-color: var(--color-ink); color: var(--color-cream); margin-top: var(--section-gap);">
+  <div style={`max-width: var(--max-w-page); margin: 0 auto; padding: var(--px-content) var(--px-page);`}>
 
-      <div style="margin-top: 2.5rem; display: flex; align-items: center; gap: 1.5rem;">
-        <a href="https://www.linkedin.com/in/hemang-sharma" target="_blank" rel="noopener noreferrer" style={`font-family: var(--font-mono); font-size: var(--text-label); color: var(--color-muted); text-decoration: none;`}>LinkedIn</a>
-        <a href="https://dribbble.com" target="_blank" rel="noopener noreferrer" style={`font-family: var(--font-mono); font-size: var(--text-label); color: var(--color-muted); text-decoration: none;`}>Dribbble</a>
-        <a href="https://read.cv/hemang" target="_blank" rel="noopener noreferrer" style={`font-family: var(--font-mono); font-size: var(--text-label); color: var(--color-muted); text-decoration: none;`}>Read.cv</a>
+    <!-- Main footer row -->
+    <div style="display: grid; grid-template-columns: auto 1fr auto; gap: 4rem; align-items: center; padding-bottom: 3rem; border-bottom: 1px solid var(--color-border-dark);">
+
+      <!-- Logo mark -->
+      <LogoMark client:visible />
+
+      <!-- Info -->
+      <div>
+        <p style={`font-family: var(--font-display); font-size: 2rem; letter-spacing: var(--tracking-tight); margin: 0 0 0.25rem; color: var(--color-cream);`}>
+          Hemang Sharma
+        </p>
+        <p style={`font-family: var(--font-body); font-size: var(--text-body); color: rgba(244,237,217,0.5); margin: 0 0 1.25rem;`}>
+          UI UX Designer | Product Designer
+        </p>
+        <a
+          href="mailto:kshamahemang@gmail.com"
+          style={`font-family: var(--font-body); font-size: var(--text-body); color: rgba(244,237,217,0.65); text-decoration: none; display: block; margin-bottom: 1.5rem;`}
+        >
+          kshamahemang@gmail.com
+        </a>
+
+        <!-- Social icons -->
+        <div style="display: flex; gap: 0.75rem;">
+          <a
+            href="https://www.linkedin.com/in/hemang-sharma"
+            target="_blank"
+            rel="noopener noreferrer"
+            title="LinkedIn"
+            style={`
+              width: 2.25rem; height: 2.25rem;
+              border-radius: 0.375rem;
+              background: rgba(244,237,217,0.12);
+              display: flex; align-items: center; justify-content: center;
+              text-decoration: none;
+              font-family: var(--font-mono); font-size: 0.7rem;
+              color: var(--color-cream);
+              letter-spacing: 0;
+              font-weight: 700;
+            `}
+          >
+            in
+          </a>
+          <a
+            href="https://behance.net"
+            target="_blank"
+            rel="noopener noreferrer"
+            title="Behance"
+            style={`
+              width: 2.25rem; height: 2.25rem;
+              border-radius: 0.375rem;
+              background: rgba(244,237,217,0.12);
+              display: flex; align-items: center; justify-content: center;
+              text-decoration: none;
+              font-family: var(--font-mono); font-size: 0.7rem;
+              color: var(--color-cream);
+              font-weight: 700;
+            `}
+          >
+            Bē
+          </a>
+        </div>
       </div>
 
-      <p style={`font-family: var(--font-mono); font-size: var(--text-label); color: var(--color-muted); margin-top: 2rem; opacity: 0.6;`}>
+      <!-- View Resume -->
+      <a
+        href="/resume.pdf"
+        target="_blank"
+        rel="noopener noreferrer"
+        style={`font-family: var(--font-body); font-size: var(--text-body); color: var(--color-ink); background: var(--color-cream); padding: 0.75rem 1.5rem; border-radius: 2rem; text-decoration: none; white-space: nowrap; align-self: start;`}
+      >
+        View Resume
+      </a>
+    </div>
+
+    <!-- Bottom bar -->
+    <div style="display: flex; justify-content: space-between; align-items: center; padding-top: 1.25rem;">
+      <p style={`font-family: var(--font-mono); font-size: var(--text-label); color: rgba(244,237,217,0.35); margin: 0;`}>
         © May 2026, Hemang Sharma
+      </p>
+      <p style={`font-family: var(--font-mono); font-size: var(--text-label); color: rgba(244,237,217,0.35); margin: 0;`}>
+        Designed through ideas, iterations and late nights ~ -^
       </p>
     </div>
 
-    <LogoMark client:visible />
   </div>
 </footer>

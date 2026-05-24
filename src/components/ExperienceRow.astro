@@ -4,28 +4,50 @@ interface Props {
   company: string;
   period: string;
   location: string;
+  type?: string;
 }
 
-const { role, company, period, location } = Astro.props;
+const { role, company, period, location, type } = Astro.props;
 ---
 
 <div
-  style={`display: grid; grid-template-columns: 1fr auto; gap: 1rem; align-items: start; padding: 1.5rem 0; border-bottom: 1px solid var(--color-border-dark);`}
+  style={`
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 1rem;
+    align-items: center;
+    padding: 1.25rem 0;
+    border-bottom: 1px solid var(--color-border);
+  `}
 >
+  <!-- Left: Role + Period -->
   <div>
-    <p style={`font-family: var(--font-display); font-size: var(--text-body-lg); letter-spacing: var(--tracking-tight); margin: 0 0 0.25rem;`}>
+    <p style={`font-family: var(--font-body); font-size: var(--text-body); font-weight: 600; margin: 0 0 0.2rem; color: var(--color-ink);`}>
       {role}
     </p>
-    <p style={`font-family: var(--font-body); font-size: var(--text-body); color: var(--color-muted); margin: 0;`}>
+    <p style={`font-family: var(--font-body); font-size: var(--text-label); color: var(--color-muted); margin: 0;`}>
+      {period}
+    </p>
+  </div>
+
+  <!-- Center: Company -->
+  <div style="display: flex; align-items: center; gap: 0.5rem;">
+    <span style="font-size: 1rem; opacity: 0.5;">🏢</span>
+    <p style={`font-family: var(--font-body); font-size: var(--text-body); color: var(--color-ink); margin: 0;`}>
       {company}
     </p>
   </div>
-  <div style="text-align: right;">
-    <p style={`font-family: var(--font-mono); font-size: var(--text-label); color: var(--color-muted); margin: 0 0 0.25rem;`}>
-      {period}
-    </p>
-    <p style={`font-family: var(--font-mono); font-size: var(--text-label); color: var(--color-muted); opacity: 0.6; margin: 0;`}>
+
+  <!-- Right: Location + Type -->
+  <div style="display: flex; align-items: center; gap: 0.5rem; justify-content: flex-end;">
+    <p style={`font-family: var(--font-body); font-size: var(--text-label); color: var(--color-muted); margin: 0;`}>
       {location}
     </p>
+    {type && (
+      <>
+        <span style="color: var(--color-border); font-size: 1rem;">•</span>
+        <span style={`font-family: var(--font-body); font-size: var(--text-label); color: var(--color-muted);`}>{type}</span>
+      </>
+    )}
   </div>
 </div>

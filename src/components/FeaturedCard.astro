@@ -13,34 +13,51 @@ interface Props {
 const { number, title, tags, blurb, href, theme, category, imageRight = true } = Astro.props;
 
 const bgMap: Record<string, string> = {
-  gintaa: "var(--color-gintaa)",
-  fnol:   "var(--color-fnol)",
-  bosch:  "var(--color-bosch)",
-  bolna:  "var(--color-bolna)",
+  gintaa: "#D4BF96",
+  fnol:   "#4A2880",
+  bosch:  "#5C1A1A",
+  bolna:  "#192B1A",
 };
 
 const fgMap: Record<string, string> = {
-  gintaa: "var(--color-ink)",
-  fnol:   "var(--color-cream)",
-  bosch:  "var(--color-ink)",
-  bolna:  "var(--color-cream)",
+  gintaa: "#1E0D0D",
+  fnol:   "#F9F5F0",
+  bosch:  "#F9F5F0",
+  bolna:  "#F9F5F0",
+};
+
+const imageMap: Record<string, string> = {
+  gintaa: "/gintaa-project.png",
+  fnol:   "/fnol-project.png",
+  bosch:  "/bosch-project.png",
+  bolna:  "/bolna-project.png",
+};
+
+const imagePosMap: Record<string, string> = {
+  gintaa: "center 22%",
+  fnol:   "center 18%",
+  bosch:  "center 20%",
+  bolna:  "center 18%",
 };
 
 const bg = bgMap[theme];
 const fg = fgMap[theme];
-const borderColor = fg === "var(--color-ink)"
+const img = imageMap[theme];
+const imgPos = imagePosMap[theme];
+
+const borderColor = fg === "#1E0D0D"
   ? "rgba(30,13,13,0.18)"
-  : "rgba(255,255,255,0.18)";
-const mutedFg = fg === "var(--color-ink)"
+  : "rgba(249,245,240,0.15)";
+const mutedFg = fg === "#1E0D0D"
   ? "rgba(30,13,13,0.55)"
-  : "rgba(244,237,217,0.6)";
+  : "rgba(249,245,240,0.6)";
 ---
 
 <a
   href={href}
   style={`
     display: grid;
-    grid-template-columns: ${imageRight ? "1fr 1fr" : "1fr 1fr"};
+    grid-template-columns: 1fr 1fr;
     background: ${bg};
     color: ${fg};
     border-radius: 0.75rem;
@@ -49,7 +66,7 @@ const mutedFg = fg === "var(--color-ink)"
     min-height: 22rem;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
   `}
-  onmouseover="this.style.transform='translateY(-3px)';this.style.boxShadow='0 16px 48px rgba(0,0,0,0.25)'"
+  onmouseover="this.style.transform='translateY(-2px)';this.style.boxShadow='0 12px 40px rgba(0,0,0,0.2)'"
   onmouseout="this.style.transform='translateY(0)';this.style.boxShadow='none'"
 >
   <!-- Text column -->
@@ -68,122 +85,70 @@ const mutedFg = fg === "var(--color-ink)"
           {category}
         </p>
       )}
-      <div style={`display: flex; align-items: center; gap: 0.5rem; margin: 0 0 0.75rem;`}>
-        <span style={`font-family: var(--font-mono); font-size: var(--text-label); opacity: 0.5;`}>{number}</span>
-        {tags.slice(0, 2).map((tag) => (
-          <span style={`font-family: var(--font-mono); font-size: 0.75rem; padding: 0.2rem 0.6rem; border-radius: 2rem; border: 1px solid ${borderColor}; opacity: 0.7;`}>
+      <p style={`font-family: var(--font-mono); font-size: var(--text-label); margin: 0 0 0.5rem; opacity: 0.5;`}>{number}</p>
+      <div style={`display: flex; flex-wrap: wrap; gap: 0.4rem; margin-bottom: 1rem;`}>
+        {tags.map((tag) => (
+          <span style={`font-family: var(--font-body); font-size: 0.8rem; color: ${fg}; opacity: 0.7;`}>
             {tag}
           </span>
-        ))}
+        )).reduce((acc, el, i) => {
+          if (i === 0) return [el];
+          return [...acc, <span style={`opacity: 0.35; font-size: 0.8rem;`}>•</span>, el];
+        }, [] as any[])}
       </div>
       <h3 style={`font-family: var(--font-display); font-size: clamp(1.25rem, 2vw, var(--text-h3)); letter-spacing: var(--tracking-tight); margin: 0 0 1rem; text-transform: uppercase; line-height: var(--leading-tight);`}>
         {title}
       </h3>
-      <p style={`font-family: var(--font-body); font-size: var(--text-body); line-height: var(--leading-body); opacity: 0.8; margin: 0; max-width: 36ch;`}>
+      <p style={`font-family: var(--font-body); font-size: var(--text-body); line-height: var(--leading-body); opacity: 0.8; margin: 0; max-width: 38ch;`}>
         {blurb}
       </p>
     </div>
 
     <div style="margin-top: 2rem;">
-      <span style={`font-family: var(--font-body); font-size: var(--text-body); border-bottom: 1px solid ${borderColor}; padding-bottom: 0.125rem;`}>
+      <span
+        style={`
+          font-family: var(--font-body); font-size: var(--text-body);
+          display: inline-flex; align-items: center; gap: 0.5rem;
+          border: 1px solid ${borderColor};
+          padding: 0.6rem 1.25rem;
+          border-radius: 2rem;
+          color: ${fg};
+        `}
+      >
         Read Case Study →
       </span>
     </div>
   </div>
 
-  <!-- Visual column -->
+  <!-- Image column -->
   <div
     style={`
-      position: relative;
-      overflow: hidden;
       order: ${imageRight ? 1 : 0};
+      overflow: hidden;
+      position: relative;
     `}
   >
-    {theme === "gintaa" && (
-      <svg width="100%" height="100%" viewBox="0 0 400 350" preserveAspectRatio="xMidYMid slice" style="opacity:0.7;">
-        <!-- Phone frame -->
-        <rect x="120" y="30" width="160" height="290" rx="20" fill="rgba(30,13,13,0.15)" stroke="rgba(30,13,13,0.3)" stroke-width="2"/>
-        <rect x="130" y="55" width="140" height="245" rx="4" fill="rgba(30,13,13,0.1)"/>
-        <!-- UI rows -->
-        <rect x="140" y="70" width="80" height="10" rx="3" fill="rgba(30,13,13,0.25)"/>
-        <rect x="140" y="90" width="120" height="30" rx="6" fill="rgba(30,13,13,0.18)"/>
-        <rect x="140" y="128" width="120" height="30" rx="6" fill="rgba(30,13,13,0.18)"/>
-        <rect x="140" y="166" width="120" height="30" rx="6" fill="rgba(30,13,13,0.18)"/>
-        <rect x="140" y="210" width="120" height="40" rx="8" fill="rgba(30,13,13,0.3)"/>
-        <!-- Map placeholder -->
-        <rect x="140" y="258" width="120" height="28" rx="4" fill="rgba(30,13,13,0.12)"/>
-        <circle cx="200" cy="272" r="5" fill="rgba(30,13,13,0.35)"/>
-      </svg>
-    )}
-
-    {theme === "fnol" && (
-      <svg width="100%" height="100%" viewBox="0 0 400 350" preserveAspectRatio="xMidYMid slice" style="opacity:0.55;">
-        <!-- Browser frame -->
-        <rect x="40" y="40" width="320" height="270" rx="8" fill="rgba(255,255,255,0.08)" stroke="rgba(255,255,255,0.18)" stroke-width="1.5"/>
-        <rect x="40" y="40" width="320" height="28" rx="8" fill="rgba(255,255,255,0.06)"/>
-        <circle cx="62" cy="54" r="4" fill="rgba(255,255,255,0.2)"/>
-        <circle cx="78" cy="54" r="4" fill="rgba(255,255,255,0.2)"/>
-        <circle cx="94" cy="54" r="4" fill="rgba(255,255,255,0.2)"/>
-        <!-- Form rows -->
-        <rect x="56" y="84" width="60" height="8" rx="2" fill="rgba(255,255,255,0.25)"/>
-        <rect x="56" y="98" width="280" height="24" rx="4" fill="rgba(255,255,255,0.1)"/>
-        <rect x="56" y="134" width="60" height="8" rx="2" fill="rgba(255,255,255,0.25)"/>
-        <rect x="56" y="148" width="280" height="24" rx="4" fill="rgba(255,255,255,0.1)"/>
-        <rect x="56" y="184" width="60" height="8" rx="2" fill="rgba(255,255,255,0.25)"/>
-        <rect x="56" y="198" width="280" height="24" rx="4" fill="rgba(255,255,255,0.1)"/>
-        <!-- AI badge -->
-        <rect x="56" y="240" width="90" height="22" rx="11" fill="rgba(255,255,255,0.15)"/>
-        <rect x="244" y="240" width="92" height="22" rx="4" fill="rgba(255,255,255,0.25)"/>
-      </svg>
-    )}
-
-    {theme === "bosch" && (
-      <svg width="100%" height="100%" viewBox="0 0 400 350" preserveAspectRatio="xMidYMid slice" style="opacity:0.6;">
-        <!-- Dashboard window -->
-        <rect x="30" y="30" width="340" height="290" rx="8" fill="rgba(30,13,13,0.12)" stroke="rgba(30,13,13,0.22)" stroke-width="1.5"/>
-        <!-- Sidebar -->
-        <rect x="30" y="30" width="80" height="290" rx="8" fill="rgba(30,13,13,0.1)"/>
-        <rect x="42" y="56" width="56" height="8" rx="2" fill="rgba(30,13,13,0.3)"/>
-        <rect x="42" y="76" width="46" height="8" rx="2" fill="rgba(30,13,13,0.2)"/>
-        <rect x="42" y="96" width="50" height="8" rx="2" fill="rgba(30,13,13,0.2)"/>
-        <rect x="42" y="116" width="40" height="8" rx="2" fill="rgba(30,13,13,0.2)"/>
-        <!-- Main area cards -->
-        <rect x="122" y="50" width="228" height="80" rx="6" fill="rgba(30,13,13,0.12)"/>
-        <rect x="134" y="62" width="80" height="8" rx="2" fill="rgba(30,13,13,0.3)"/>
-        <rect x="134" y="78" width="180" height="6" rx="2" fill="rgba(30,13,13,0.18)"/>
-        <rect x="134" y="92" width="140" height="6" rx="2" fill="rgba(30,13,13,0.18)"/>
-        <!-- Chart bars -->
-        <rect x="122" y="148" width="228" height="90" rx="6" fill="rgba(30,13,13,0.1)"/>
-        <rect x="140" y="198" width="20" height="28" rx="2" fill="rgba(30,13,13,0.28)"/>
-        <rect x="168" y="182" width="20" height="44" rx="2" fill="rgba(30,13,13,0.28)"/>
-        <rect x="196" y="190" width="20" height="36" rx="2" fill="rgba(30,13,13,0.28)"/>
-        <rect x="224" y="172" width="20" height="54" rx="2" fill="rgba(30,13,13,0.28)"/>
-        <rect x="252" y="185" width="20" height="41" rx="2" fill="rgba(30,13,13,0.28)"/>
-        <rect x="280" y="168" width="20" height="58" rx="2" fill="rgba(30,13,13,0.28)"/>
-        <!-- Status pills -->
-        <rect x="122" y="252" width="72" height="22" rx="11" fill="rgba(30,13,13,0.15)"/>
-        <rect x="202" y="252" width="72" height="22" rx="11" fill="rgba(30,13,13,0.15)"/>
-        <rect x="282" y="252" width="68" height="22" rx="11" fill="rgba(30,13,13,0.15)"/>
-      </svg>
-    )}
-
-    {theme === "bolna" && (
-      <svg width="100%" height="100%" viewBox="0 0 400 350" preserveAspectRatio="xMidYMid slice" style="opacity:0.55;">
-        <!-- Waveform bars -->
-        {[
-          [80, 155, 12, 40], [100, 145, 12, 60], [120, 130, 12, 90], [140, 120, 12, 110],
-          [160, 110, 12, 130], [180, 95, 12, 160], [200, 80, 12, 190], [220, 95, 12, 160],
-          [240, 110, 12, 130], [260, 120, 12, 110], [280, 135, 12, 80], [300, 148, 12, 54],
-          [320, 158, 12, 34],
-        ].map(([x, y, w, h]) => (
-          <rect x={x} y={y} width={w} height={h} rx="6" fill="rgba(244,237,217,0.3)"/>
-        ))}
-        <!-- Text line placeholders -->
-        <rect x="70" y="270" width="260" height="8" rx="2" fill="rgba(244,237,217,0.18)"/>
-        <rect x="100" y="288" width="200" height="8" rx="2" fill="rgba(244,237,217,0.12)"/>
-        <!-- CTA pill -->
-        <rect x="140" y="315" width="120" height="28" rx="14" fill="rgba(244,237,217,0.2)"/>
-      </svg>
-    )}
+    <div
+      style={`
+        position: absolute;
+        inset: 1.5rem;
+        border-radius: 0.5rem;
+        overflow: hidden;
+        background: ${fg === "#1E0D0D" ? "rgba(30,13,13,0.1)" : "rgba(249,245,240,0.06)"};
+      `}
+    >
+      <img
+        src={img}
+        alt={title}
+        style={`
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          object-position: ${imgPos};
+          transform: scale(1.02);
+        `}
+        loading="lazy"
+      />
+    </div>
   </div>
 </a>
