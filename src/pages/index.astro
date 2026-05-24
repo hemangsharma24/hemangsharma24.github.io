@@ -27,11 +27,11 @@ const companies = [
 <Layout title="Home" description="Hemang Sharma — UI/UX Product Designer. Based in Jaipur, India.">
 
   <!-- Hero -->
-  <section class="hero-section" style="width: calc(100% - 80px); max-width: var(--max-w-page); margin: 0 auto var(--section-gap); border: 1px solid var(--color-border);">
+  <section class="hero-section" style="width: calc(100% - 80px); max-width: var(--max-w-page); margin: 40px auto var(--section-gap); border-left: 1px solid var(--color-border-hero); border-right: 1px solid var(--color-border-hero);">
     <div class="hero-grid">
 
       <!-- Left: text content -->
-      <div class="hero-left" style="padding: 2.5rem; display: flex; flex-direction: column; border-right: 1px solid var(--color-border); min-height: 28rem;">
+      <div class="hero-left" style="padding: 2.5rem; display: flex; flex-direction: column; border-right: 1px solid var(--color-border-hero); min-height: 28rem;">
 
         <!-- Face icon -->
         <div style="margin-bottom: 2.5rem;">
@@ -117,7 +117,7 @@ const companies = [
           Specialties I handled
         </p>
         <div style="display: flex; flex-wrap: wrap; gap: 0.5rem;">
-          {["B2B PLATFORMS", "MARKETPLACE", "CUSTOMER EXPERIENCE", "AI PRODUCTS", "ENTERPRISE SUPPLY CHAIN"].map((tag) => (
+          {["B2B PLATFORMS", "MARKETPLACE", "CUSTOMER EXPERIENCE", "AI PRODUCTS"].map((tag) => (
             <span style="font-family: var(--font-body); font-size: 0.8125rem; font-weight: 500; letter-spacing: 0.02em; color: var(--color-ink); border: 1px solid rgba(30 13 13 / 0.22); padding: 0.375rem 0.75rem;">{tag}</span>
           ))}
         </div>
@@ -199,8 +199,8 @@ const companies = [
   </section>
 
   <!-- Personal bio section -->
-  <div style="background: #F5EEE8; border-top: 1px solid var(--color-border);">
-    <div class="bio-inner" style={`max-width: 48rem; margin: 0 auto; padding: var(--section-gap) var(--px-page); text-align: center;`}>
+  <div style="background: #FFEFF4; border-top: 1px solid var(--color-border);">
+    <div class="bio-inner" style={`max-width: 70rem; margin: 0 auto; padding: 3rem var(--px-page); text-align: center;`}>
       <!-- Pixel art avatar -->
       <div style="margin: 0 auto 2rem;">
         <img src="/home_page_assets/Hero Section/Music-Headphones-Human--Streamline-Pixel.svg" width="48" height="48" alt="" style="display: block; margin: 0 auto;" />
@@ -234,6 +234,22 @@ const companies = [
 
 <style>
   /* Hero */
+  .hero-section {
+    position: relative;
+  }
+  .hero-section::before,
+  .hero-section::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100vw;
+    height: 1px;
+    background: var(--color-border-hero);
+  }
+  .hero-section::before { top: 0; }
+  .hero-section::after  { bottom: 0; }
+
   .hero-grid {
     display: grid;
     grid-template-columns: 1fr 26rem;
@@ -295,7 +311,7 @@ const companies = [
 
     .hero-left {
       border-right: none !important;
-      border-bottom: 1px solid var(--color-border);
+      border-bottom: 1px solid var(--color-border-hero);
       padding: 1.75rem !important;
       min-height: unset !important;
     }

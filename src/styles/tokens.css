@@ -24,8 +24,9 @@
   --color-bolna:  #192B1A;
 
   /* Borders */
-  --color-border:      rgba(30 13 13 / 0.12);
-  --color-border-dark: rgba(255 255 255 / 0.1);
+  --color-border:       rgba(30 13 13 / 0.12);
+  --color-border-dark:  rgba(255 255 255 / 0.1);
+  --color-border-hero:  #B78191;
 
   /* Surfaces */
   --color-surface:       rgba(30 13 13 / 0.04);
