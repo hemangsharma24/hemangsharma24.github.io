@@ -318,8 +318,8 @@ const companies = [
     height: 3.5rem;
     background: var(--color-border-hero);
   }
-  .testimonials-outer::before { left: 20%; }
-  .testimonials-outer::after  { right: 20%; }
+  .testimonials-outer::before { left: 4rem; }
+  .testimonials-outer::after  { right: 4rem; }
   .testimonials-box {
     border: 1px solid var(--color-border-hero);
     padding: 2.5rem;
@@ -370,8 +370,11 @@ const companies = [
   }
   /* Remove right border from the last column on each row */
   .logo-grid > div:nth-child(5n) { border-right: none !important; }
-  /* Remove bottom border from last row — frame-divider provides it */
-  .logo-grid > div:nth-last-child(-n+5) { border-bottom: none !important; }
+
+  /* Desktop only: 5-col × 10 items → last row = last 5 */
+  @media (min-width: 1024px) {
+    .logo-grid > div:nth-last-child(-n+5) { border-bottom: none !important; }
+  }
 
   /* ── Tablet (640–1023px) ── */
   @media (min-width: 640px) and (max-width: 1023px) {
@@ -384,6 +387,8 @@ const companies = [
     }
     .logo-grid > div:nth-child(5n) { border-right: revert !important; }
     .logo-grid > div:nth-child(4n) { border-right: none !important; }
+    /* Tablet: 4-col × 10 items → last row = last 2 */
+    .logo-grid > div:nth-last-child(-n+2) { border-bottom: none !important; }
 
     /* 4-col grid: 2nd divider at 50%, 4th is the right edge so hide it */
     .col-guide-2 { left: 50%; }
@@ -406,8 +411,8 @@ const companies = [
     .testimonials-outer {
       padding: 3rem 2.5rem 3.5rem;
     }
-    .testimonials-outer::before { left: 25%; }
-    .testimonials-outer::after  { right: 25%; }
+    .testimonials-outer::before { left: 2.5rem; }
+    .testimonials-outer::after  { right: 2.5rem; }
     .testimonials-outer::before,
     .testimonials-outer::after  { height: 3rem; }
   }
@@ -481,6 +486,8 @@ const companies = [
     }
     .logo-grid > div:nth-child(5n) { border-right: revert !important; }
     .logo-grid > div:nth-child(2n) { border-right: none !important; }
+    /* Mobile: 2-col × 10 items → last row = last 2 */
+    .logo-grid > div:nth-last-child(-n+2) { border-bottom: none !important; }
 
     .page-section {
       padding-left: 1.25rem !important;
